@@ -1,0 +1,17 @@
+{% extends './base.html' %} {% load static %}
+{% block title %}{{post.title}}{% endblock title %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-8">
+            <h5 class="py-2 mb-4">{{post.title}}</h5>
+            <img src="{{post.imageURL}}" class="img-fluid" alt="">
+            <div class="content">
+                {{post.content|safe}}
+            </div>
+            <small>{{post.publish_date}}</small>
+        </div>
+    </div>
+</div>
+{% endblock body %}

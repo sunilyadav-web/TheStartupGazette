@@ -1,10 +1,16 @@
-{% extends './base.html' %} {% load static %} 
- {% block body %} 
- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+{% extends './base.html' %} {% load static %}
+{% block title %}
+Home
+{% endblock title %}
+{% block body %}
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
   <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+      aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+      aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+      aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -30,14 +36,51 @@
 <section class="py-5">
   <div class="container">
     <div class="row">
-      
-<div>
-  <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non pariatur adipisci expedita a quo dolor consectetur possimus iusto, harum laborum debitis. Quam praesentium quibusdam assumenda quasi dignissimos impedit voluptate odio?</h4>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus aspernatur ex deserunt. Aspernatur vel totam consequatur quos expedita facilis tempora quidem minus, dicta saepe repellat doloremque recusandae accusantium blanditiis. Impedit modi facere, necessitatibus nisi quas nesciunt perferendis. Commodi ipsam in possimus blanditiis, quis unde illo laboriosam aliquid beatae quae porro quisquam nemo necessitatibus earum cupiditate vitae quos quas expedita autem quibusdam maxime reiciendis voluptates quam? Iusto similique repellat iste voluptatum? Ex molestias atque, totam mollitia asperiores modi commodi porro sapiente consequatur tempora ipsam necessitatibus sunt laborum soluta dignissimos animi incidunt beatae ratione exercitationem temporibus excepturi id eius provident eveniet. Dicta mollitia laudantium commodi exercitationem suscipit. Amet similique dolorem neque blanditiis hic eius perferendis assumenda. Sit alias natus voluptate aliquid expedita. Reiciendis odio, blanditiis itaque voluptatem, consectetur illo totam expedita in saepe esse impedit cumque, nisi consequatur porro ipsam. Tempore corrupti, quam enim quibusdam dolorum non repellendus cumque accusantium quis accusamus ut blanditiis voluptatem. Placeat ea, eligendi iusto, necessitatibus porro amet quas unde reiciendis expedita autem fuga eos iure alias officiis error dolorem! Ratione excepturi id doloremque ullam facilis consequuntur atque tempore soluta repellendus iste exercitationem ut, reprehenderit fuga illo consequatur amet aliquam, numquam ex minima. Nemo sed fuga optio vitae?</p>
-</div>  
-</div>
-</div>
+
+      <div>
+        <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non pariatur adipisci expedita a quo dolor
+          consectetur possimus iusto, harum laborum debitis. Quam praesentium quibusdam assumenda quasi dignissimos
+          impedit voluptate odio?</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus aspernatur ex deserunt. Aspernatur vel
+          totam consequatur quos expedita facilis tempora quidem minus, dicta saepe repellat doloremque recusandae
+          accusantium blanditiis. Impedit modi facere, necessitatibus nisi quas nesciunt perferendis. Commodi ipsam in
+          possimus blanditiis, quis unde illo laboriosam aliquid beatae quae porro quisquam nemo necessitatibus earum
+          cupiditate vitae quos quas expedita autem quibusdam maxime reiciendis voluptates quam? Iusto similique
+          repellat iste voluptatum? Ex molestias atque, totam mollitia asperiores modi commodi porro sapiente
+          consequatur tempora ipsam necessitatibus sunt laborum soluta dignissimos animi incidunt beatae ratione
+          exercitationem temporibus excepturi id eius provident eveniet. Dicta mollitia laudantium commodi
+          exercitationem suscipit. Amet similique dolorem neque blanditiis hic eius perferendis assumenda. Sit alias
+          natus voluptate aliquid expedita. Reiciendis odio, blanditiis itaque voluptatem, consectetur illo totam
+          expedita in saepe esse impedit cumque, nisi consequatur porro ipsam. Tempore corrupti, quam enim quibusdam
+          dolorum non repellendus cumque accusantium quis accusamus ut blanditiis voluptatem. Placeat ea, eligendi
+          iusto, necessitatibus porro amet quas unde reiciendis expedita autem fuga eos iure alias officiis error
+          dolorem! Ratione excepturi id doloremque ullam facilis consequuntur atque tempore soluta repellendus iste
+          exercitationem ut, reprehenderit fuga illo consequatur amet aliquam, numquam ex minima. Nemo sed fuga optio
+          vitae?</p>
+      </div>
+    </div>
+  </div>
 
 </section>
-  
+
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      {% for item in posts %}
+      <div class="col-3">
+        <div class="card" style="width: 18rem;">
+          <img src="{{item.imageURL}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{item.title}}</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+            <a href="{% url 'home:post' item.slug %}" class="btn btn-primary">View Post</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
 {% endblock body %}
