@@ -1,4 +1,12 @@
 {% extends './base.html' %} {% load static %}
+
+<!-- ======Meta Description and Keywords========== -->
+{% block metatags %}
+<meta name="description" content="{{post.meta_description}}" />
+<meta name="keywords" content="{{post.meta_keyword}}" />
+{% endblock metatags %}
+
+<!-- ==========Title Block========= -->
 {% block title %}{{post.title}}{% endblock title %}
 
 {% block body %}
@@ -10,7 +18,7 @@
             <div class="content">
                 {{post.content|safe}}
             </div>
-            <small>{{post.publish_date}}</small>
+            <small>Published on: {{post.publish_date|date:'d-M-Y'}}</small>
         </div>
     </div>
 </div>

@@ -3,12 +3,14 @@ from django.http import HttpResponse
 from .models import *
 from django.contrib import messages
 
+# =========Home Page================
 def home(request):
     context={}
-    posts=Post.objects.all()
+    posts=Post.objects.filter(status=1)
     context['posts']=posts
     return render(request,'home/index.html',context)
 
+# =======Post Detail Page=============
 def post(request,slug):
     context={}
     try:
@@ -24,16 +26,38 @@ def post(request,slug):
         return redirect('home:home')
     return render(request,'home/post.html',context)
 
-def categoryFilter(request,category):
+# ===========Filter Category===========
+def categoryFilter(request,name):
     context={}
     try:
-        check=Category.objects.filter(name=category).exists()
+        check=Category.objects.filter(name=name).exists()
         if check:
-            print("Category Exits!!")
-            category_obj=Category.objects.get(name=category)
-            posts=Post.objects.filter(category=category_obj)
-            posts=posts.filter(status=True)
+            category_obj=Category.objects.get(name=name)
+            queryset=Post.objects.filter(category=category_obj)
+            posts=queryset.filter(status=1)
             context['posts']=posts
+            context['category']=name
+        else:
+            messages.warning(request,'This '+name+' Category Not Found!')
     except Exception as e:
         print('Category Filter Exception : ',e)
+        messages.error(request,'Somthing went Wrong!')
     return render(request,'home/category.html',context)
+
+# =========Contact Page ===========
+def contact(request):
+    context={}
+    try:
+        pass
+    except Exception as e:
+        print("Contact Exception : ",e)
+    return render(request,'home/contact.html',context)
+
+# ============About us Page============
+def aboutUs(request):
+    context={}
+    try:
+        pass
+    except Exception as e:
+        print('About us Exception : ',e)
+    return render(request,'home/about_us.html',context)

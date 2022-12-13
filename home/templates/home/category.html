@@ -1,8 +1,30 @@
 {% extends './base.html' %} {% load static %}
-{% block title %}category{% endblock title %}
+{% block title %}All Post of {{category | title }}{% endblock title %}
 
 {% block body %}
-
-cateogy
-
+<section class="py-5">
+<div class="container">
+    <div class="row">
+        {% for item in posts  %}
+          
+        <div class="col">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="{{item.imageURL}}" class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{item.title}}</h5>
+                      <p class="card-text">{{item.content | safe |truncatewords:20}}</p>
+                      <p class="card-text"><small class="text-muted">Published on :  {{item.publish_date | date:'d M Y'}}</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</section>
 {% endblock body %}
