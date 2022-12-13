@@ -1,13 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DailyNews</title>
-</head>
-<body>
-    <h1>Hello World</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, voluptatem laboriosam, distinctio odit necessitatibus magni voluptate, sint qui hic laborum nulla officia sapiente. Quam culpa, illum temporibus ducimus voluptatem eveniet!</p>
-</body>
-</html>
+{% extends './base.html' %} {% load static %} 
+ {% block body %} 
+ <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'img/post-slide-2.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item active">
+      <img src="{% static 'img/post-slide-3.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'img/post-slide-4.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      
+<div>
+  <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non pariatur adipisci expedita a quo dolor consectetur possimus iusto, harum laborum debitis. Quam praesentium quibusdam assumenda quasi dignissimos impedit voluptate odio?</h4>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus aspernatur ex deserunt. Aspernatur vel totam consequatur quos expedita facilis tempora quidem minus, dicta saepe repellat doloremque recusandae accusantium blanditiis. Impedit modi facere, necessitatibus nisi quas nesciunt perferendis. Commodi ipsam in possimus blanditiis, quis unde illo laboriosam aliquid beatae quae porro quisquam nemo necessitatibus earum cupiditate vitae quos quas expedita autem quibusdam maxime reiciendis voluptates quam? Iusto similique repellat iste voluptatum? Ex molestias atque, totam mollitia asperiores modi commodi porro sapiente consequatur tempora ipsam necessitatibus sunt laborum soluta dignissimos animi incidunt beatae ratione exercitationem temporibus excepturi id eius provident eveniet. Dicta mollitia laudantium commodi exercitationem suscipit. Amet similique dolorem neque blanditiis hic eius perferendis assumenda. Sit alias natus voluptate aliquid expedita. Reiciendis odio, blanditiis itaque voluptatem, consectetur illo totam expedita in saepe esse impedit cumque, nisi consequatur porro ipsam. Tempore corrupti, quam enim quibusdam dolorum non repellendus cumque accusantium quis accusamus ut blanditiis voluptatem. Placeat ea, eligendi iusto, necessitatibus porro amet quas unde reiciendis expedita autem fuga eos iure alias officiis error dolorem! Ratione excepturi id doloremque ullam facilis consequuntur atque tempore soluta repellendus iste exercitationem ut, reprehenderit fuga illo consequatur amet aliquam, numquam ex minima. Nemo sed fuga optio vitae?</p>
+</div>  
+</div>
+</div>
+
+</section>
+  
+{% endblock body %}
