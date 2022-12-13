@@ -4,7 +4,7 @@ from .utils import *
 from django.contrib.auth.models import User
 
 class Category(models.Model):
-    name=models.CharField(max_length=100, verbose_name="Category Name ")
+    name=models.CharField(max_length=100, verbose_name="Category Name ",unique=True)
     description=models.CharField(max_length=250, verbose_name="Category Description")
     created_at=models.DateTimeField(auto_now_add=True, editable=False)
     updated_at=models.DateTimeField(auto_now=True, editable=False)
