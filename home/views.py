@@ -18,8 +18,22 @@ def post(request,slug):
             context['post']=post
         else:
             messages.error(request,'Post not found!!')
-    except:
-        print('Post Detail Exception!')
+    except Exception as e:
+        print('Post Detail Exception: ',e)
         messages.warning(request,'Something went wrong!')
         return redirect('home:home')
     return render(request,'home/post.html',context)
+
+def categoryFilter(request,category):
+    context={}
+    try:
+        check=Category.objects.filter(name=category).exists()
+        if check:
+            print("Category Exits!!")
+            category_obj=Category.objects.get(name=category)
+            posts=Post.objects.filter(category=category_obj)
+            posts=posts.filter(status=True)
+            context['posts']=posts
+    except Exception as e:
+        print('Category Filter Exception : ',e)
+    return render(request,'home/category.html',context)
