@@ -3,6 +3,7 @@
 Home
 {% endblock title %}
 {% block body %}
+<div class="container py-5">
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -14,13 +15,13 @@ Home
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="{% static 'img/post-slide-2.jpg' %}" class="d-block w-100" alt="...">
+      <img src="{% static 'img/post-slide-2.jpg' %}" class="d-block w-100 rounded" alt="...">
     </div>
     <div class="carousel-item active">
-      <img src="{% static 'img/post-slide-3.jpg' %}" class="d-block w-100" alt="...">
+      <img src="{% static 'img/post-slide-3.jpg' %}" class="d-block w-100 rounded" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="{% static 'img/post-slide-4.jpg' %}" class="d-block w-100" alt="...">
+      <img src="{% static 'img/post-slide-4.jpg' %}" class="d-block w-100 rounded" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -32,7 +33,7 @@ Home
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-
+</div>
 <section class="py-5">
   <div class="container">
 
@@ -173,44 +174,7 @@ Home
           <blockquote>
             <p>Longer quote goes here, maybe with some <strong>emphasized text</strong> in the middle of it.</p>
           </blockquote>
-          <p>This is some additional paragraph placeholder content. It has been written to fill the available space and
-            show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the
-            demonstration flowing, so be on the lookout for this exact same string of text.</p>
-          <h3>Example table</h3>
-          <p>And don't forget about tables in these posts:</p>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Upvotes</th>
-                <th>Downvotes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Alice</td>
-                <td>10</td>
-                <td>11</td>
-              </tr>
-              <tr>
-                <td>Bob</td>
-                <td>4</td>
-                <td>3</td>
-              </tr>
-              <tr>
-                <td>Charlie</td>
-                <td>7</td>
-                <td>9</td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td>Totals</td>
-                <td>21</td>
-                <td>23</td>
-              </tr>
-            </tfoot>
-          </table>
+       
 
           <p>This is some additional paragraph placeholder content. It's a slightly shorter version of the other highly
             repetitive body text used throughout.</p>
@@ -286,12 +250,11 @@ Home
     <div class="row">
       {% for item in posts %}
       <div class="col-3">
-        <div class="card" style="width: 18rem;">
-          <img src="{{item.imageURL}}" class="card-img-top" alt="...">
+        <div class="card">
+          <img src="{{item.imageURL}}" class="card-img-top" alt="..." style="object-fit: cover !important; aspect-ratio: 16/ 10 !important;">
           <div class="card-body">
-            <h5 class="card-title">{{item.title | truncatewords:10}}</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
+            <h6 class="card-title">{{item.title | truncatewords:8}}</h6>
+            <p class="card-text">{{item.content | safe | truncatewords:15}}</p>
             <a href="{% url 'home:post' item.slug %}" class="btn btn-primary">View Post</a>
           </div>
         </div>

@@ -8,7 +8,10 @@ from django.db.models import Q
 def home(request):
     context={}
     posts=Post.objects.filter(status=1)
+    latestPosts=posts
+    print(latestPosts)
     context['posts']=posts
+
     return render(request,'home/index.html',context)
 
 # =======Post Detail Page=============
