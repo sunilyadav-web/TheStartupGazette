@@ -1,0 +1,39 @@
+{% extends './base.html' %} {% load static %}
+{% block metatags %}{% endblock metatags %}
+{% block title %}{{query}}{% endblock title %}
+
+{% block body %}
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                
+                {% if querysetLength == 0 %}
+                  <p>Your search <b>- {{query}} -</b> did not match any Post</p>
+                  <span>Suggestions:</span>
+                  <ul>
+                    <li>Make sure that all words are spelled correctly.</li>
+                    <li>Try different keywords.</li>
+                    <li>Try more general keywords.</li>
+                    <li>Try fewer keywords.</li>
+                  </ul>
+                  {% elif querysetLength >= 1 %}
+                  <h6>Results "{{query}}":</h6>
+                {% endif %}
+                <div class="py-3">
+                    {% for item in posts %}
+                    <div>
+                        <h6><a href="{% url 'home:post' item.slug %}">{{item.title}}</a></h6>
+                        <p>
+                            {{item.content | safe |truncatewords:30}}
+                        </p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock body %}

@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import *
 from django.contrib import messages
+from django.db.models import Q
 
 # =========Home Page================
 def home(request):
@@ -61,3 +62,41 @@ def aboutUs(request):
     except Exception as e:
         print('About us Exception : ',e)
     return render(request,'home/about_us.html',context)
+
+
+# =============Search Functionality===============
+def search(request):
+    context={}
+    try:
+        query=request.GET.get('q')
+        print(query)
+        if query:
+            context['query']=query
+            checkquery=list(query)
+
+            if len(query)>78:
+                messages.warning(request,'Query length cannot be greater than 77 characters')
+                context['posts']=Post.objects.none()
+
+            elif len(query) == checkquery.count(' '):
+                messages.warning(request,'Query cannot be empty!')
+                context['posts']=Post.objects.none()
+
+            else:
+
+                posts=Post.objects.filter(status=1)
+                queryset=posts.filter(Q(title__icontains=query) | Q(content__icontains=query) ).order_by('-publish_date')
+            
+                context['posts']=queryset
+                context['querysetLength']=queryset.count()
+                if queryset.count() < 1:
+                    messages.warning(request,'Query not found '+query)
+
+        else:
+            messages.warning(request,'Query cannot be empty. Please define something!')
+            context['posts']=Post.objects.none()
+
+    except Exception as e:
+        print('Search Exception : ',e)
+        messages.error(request,'Something went wrong!')
+    return render(request,'home/search.html',context)
