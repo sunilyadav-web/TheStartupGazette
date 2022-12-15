@@ -10,6 +10,7 @@ def home(request):
     posts=Post.objects.filter(status=1)
     latestPosts=posts
     print(latestPosts)
+    context['topics']=Tag.objects.all()
     context['posts']=posts
 
     return render(request,'home/index.html',context)
@@ -23,6 +24,7 @@ def post(request,slug):
             post=Post.objects.get(slug=slug)
             context['post']=post
         else:
+            print('Post not found slug-',slug)
             messages.error(request,'Post not found!!')
     except Exception as e:
         print('Post Detail Exception: ',e)
