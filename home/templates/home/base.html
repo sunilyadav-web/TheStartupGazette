@@ -59,7 +59,7 @@
           </ul>
           <form class="d-flex" role="search" method="get" action="{% url 'home:search' %}">
             <input class="form-control me-2" type="search" placeholder="Search" name="q" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-outline-warning" type="submit">Search</button>
           </form>
         </div>
       </div>
@@ -89,37 +89,37 @@
   </main>
 
 
-  <footer id="footer" class="footer bg-dark text-white">
+  <footer id="footer" class="footer bg-dark ">
 
     <div class="footer-content">
       <div class="container">
 
-        <div class="row g-5">
+        <div class="row g-5 py-3">
           <div class="col-lg-3">
-            <h5 class="footer-heading text-center">About</h5>
-            <ul class="footer-links list-unstyled d-flex align-items-center justify-content-center flex-column ">
-              <li><a href="#"></i> About us</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#"> Terms and Condition</a></li>
-              <li><a href="#"> Contact</a></li>
+            <h5 class="footer-heading ">About</h5>
+            <ul class="footer-links list-unstyled ">
+              <li><a href="{% url 'home:aboutus' %}" class="footer-link"></i> About us</a></li>
+              <li><a href="#" class="footer-link">Privacy Policy</a></li>
+              <li><a href="#" class="footer-link"> Terms and Condition</a></li>
+              <li><a href="#" class="footer-link"> Contact</a></li>
             </ul>
           </div>
           <div class="col-6 col-lg-3">
-            <h5 class="footer-heading text-center">Topics</h5>
-            <ul class="footer-links list-unstyled d-flex align-items-center justify-content-flex-start flex-column">
+            <h5 class="footer-heading ">Topics</h5>
+            <ul class="footer-links list-unstyled ">
               {% for item in topics %}
-              <li><a href="{% url 'home:tag' item.name %}">{{item.name | title}}</a></li>
+              <li><a href="{% url 'home:tag' item.name %}" class="footer-link">{{item.name | title}}</a></li>
               {% endfor %}
             </ul>
           </div>
           
           <div class="col-6 col-lg-3">
-            <h5 class="footer-heading text-center">Submit</h5>
-            <ul class="footer-links list-unstyled d-flex align-items-center justify-content-flex-start flex-column">
+            <h5 class="footer-heading ">Submit</h5>
+            <ul class="footer-links list-unstyled ">
              
-              <li><a href="#">Submit News</a></li>
-              <li><a href="#">Submit Your Startup Story</a></li>
-              <li><a href="#">Submit Guest Post</a></li>
+              <li><a href="#" class="footer-link">Submit News</a></li>
+              <li><a href="#" class="footer-link">Submit Your Startup Story</a></li>
+              <li><a href="#" class="footer-link">Submit Guest Post</a></li>
             </ul>
           </div>
           
@@ -129,26 +129,13 @@
 
             <ul class="footer-links footer-blog-entry list-unstyled">
               <li>
-                <a href="single-post.html" class="d-flex align-items-center">
-                  <img src="assets/img/post-sq-1.jpg" alt="" class="img-fluid me-3">
-                  <div>
-                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">•</span> <span>Jul 5th '22</span></div>
-                    <span>5 Great Startup Tips for Female Founders</span>
-                  </div>
+                <a href="#" class="footer-link">
+                  5 Great Startup Tips for Female Founders
                 </a>
-              </li>
-
-              
-
-             
-
+              </li>             
               <li>
-                <a href="single-post.html" class="d-flex align-items-center">
-                  <img src="assets/img/post-sq-4.jpg" alt="" class="img-fluid me-3">
-                  <div>
-                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">•</span> <span>Jul 5th '22</span></div>
-                    <span>How to Avoid Distraction and Stay Focused During Video Calls?</span>
-                  </div>
+                <a href="#" class="footer-link">
+                    How to Avoid Distraction and Stay Focused During Video Calls?
                 </a>
               </li>
 
@@ -158,13 +145,13 @@
         </div>
       </div>
     </div>
-    <div class="footer-legal bg-black py-4">
+    <div class="footer-legal py-4">
       <div class="container">
 
         <div class="row justify-content-between">
           <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
             <div class="copyright">
-              ©dailynews.com
+              ©2022 dailynews.com All Rights Reserved
             </div>
           </div>
 

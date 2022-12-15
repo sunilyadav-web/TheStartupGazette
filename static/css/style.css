@@ -1,7 +1,164 @@
-*{
+/*=============== GOOGLE FONTS ===============*/
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/* =========== VARIABLES CSS ============= */
+:root{
+    --primary-color:#3D5A80;
+    --light-dark-color:#293241;
+    --secondary-color:#98C1D9;
+    --light-color:#E0FBFC;
+    --dark-color:#1d2633;
+
+    /* =============Font and Typography ============ */
+    --body-font:'Poppins', sans-serif;
+    --biggest-font-size: 1.75rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+    --tiny-font-size: .625rem;
+    /*========== Font weight ==========*/
+    --font-medium: 500;
+    --font-semibold: 600;
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
+
+}
+/* Responsive typography */
+
+@media screen and (min-width: 968px) {
+    :root {
+       --biggest-font-size: 2.5rem;
+       --h1-font-size: 2.25rem;
+       --h2-font-size: 1.5rem;
+       --h3-font-size: 1.25rem;
+       --normal-font-size: 1rem;
+       --small-font-size: .875rem;
+       --smaller-font-size: .813rem;
+   }
+}
+
+
+/*=============== BASE ===============*/
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
     scroll-behavior: smooth;
 }
+
+body,
+button,
+input,
+textarea {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+}
+
+body {
+    background-color: var(--body-color);
+    color: var(--text-color);
+    transition: .4s;
+    /* for an light mode animation */
+}
+
+h1,
+h2,
+h3 {
+    color: var(--primary-text-color);
+    font-weight: var(--font-semibold);
+}
+
+ul {
+    list-style: none;
+}
+
 a{
     text-decoration: none;
     
+}
+
+/* =======Button Utils======== */
+.btn-primary{
+background-color: var(--light-dark-color) !important;
+color: #fff;
+border: var(--primary-color);
+}
+
+.btn-primary:hover{
+    background-color: var(--dark-color) !important;
+    color: #fff;
+    border: var(--dark-color);
+}
+
+/* =======Background Colors======== */
+.bg-primary{
+    background-color: var(--primary-color);
+}
+.bg-dark{
+    background-color: var(--dark-color) !important;
+}
+.bg-light-dark{
+    background-color:var(--light-dark-color) ;
+}
+
+
+
+
+/* ===========Header==========  */
+.navbar-dark{
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+}
+
+
+/* ===========Footer======== */
+#footer{
+    margin-top: 1.5rem;
+}
+.footer-heading {
+    font-size: var(--h3-font-size);
+    color: #fff;
+}
+.footer-links li{
+    padding: 6px 0px;
+
+}
+.footer-link{
+    color: #fbffffde!important;
+    font-family: var(--body-font);
+    font-size: var(--small-font-size);
+}
+.footer-link:hover{
+    color: #ffa62ade!important;
+    font-family: var(--body-font);
+}
+
+.footer-legal{
+    background-color: #0d131d!important;
+}
+.copyright{
+    color: #ffffffd4;
+    font-size: var(--smaller-font-size);
+}
+
+/* ==========Home Page======= */
+.card-body p{
+    font-size: var(---normal-size) !important;
+}
+/* =======Utils Classes=========== */
+.small-text{
+    font-size: var(--small-font-size) !important;
+}
+.smaller-text{
+    font-size: var(--smaller-font-size) !important;
 }
