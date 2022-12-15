@@ -97,7 +97,7 @@
         <div class="row g-5">
           <div class="col-lg-3">
             <h5 class="footer-heading text-center">About</h5>
-            <ul class="footer-links list-unstyled d-flex align-items-center justify-content-center flex-column">
+            <ul class="footer-links list-unstyled d-flex align-items-center justify-content-center flex-column ">
               <li><a href="#"></i> About us</a></li>
               <li><a href="#">Privacy Policy</a></li>
               <li><a href="#"> Terms and Condition</a></li>
@@ -108,7 +108,7 @@
             <h5 class="footer-heading text-center">Topics</h5>
             <ul class="footer-links list-unstyled d-flex align-items-center justify-content-flex-start flex-column">
               {% for item in topics %}
-              <li><a href="#">{{item.name | title}}</a></li>
+              <li><a href="{% url 'home:tag' item.name %}">{{item.name | title}}</a></li>
               {% endfor %}
             </ul>
           </div>

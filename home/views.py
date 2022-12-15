@@ -19,6 +19,7 @@ def home(request):
 def post(request,slug):
     context={}
     try:
+        context['topics']=Tag.objects.all()
         check=Post.objects.filter(slug=slug).exists()
         if check:
             post=Post.objects.get(slug=slug)
@@ -36,6 +37,7 @@ def post(request,slug):
 def categoryFilter(request,name):
     context={}
     try:
+        context['topics']=Tag.objects.all()
         check=Category.objects.filter(name=name).exists()
         if check:
             category_obj=Category.objects.get(name=name)
@@ -50,11 +52,34 @@ def categoryFilter(request,name):
         messages.error(request,'Somthing went Wrong!')
     return render(request,'home/category.html',context)
 
+# ==============Tag Filter==========
+def tagFilter(request,tag_name):
+    context={}
+    try:
+        print('tag name ',tag_name)
+        context['topics']=Tag.objects.all()
+        check=Tag.objects.filter(name=tag_name).exists()
+        print('tag status : ',check)
+        if check:
+            tag_obj=Tag.objects.get(name=tag_name)
+
+            queryset=Post.objects.filter(tag=tag_obj)
+            posts=queryset.filter(status=1)
+            print('tag posts : ',posts)
+            context['posts']=posts
+            context['tag']=tag_name
+        else:
+            messages.warning(request,'Topic Not Found! '+tag_name)
+    except Exception as e:
+        print("Tag Exception : ",e)
+    return render(request,'home/tag.html',context)
+
+
 # =========Contact Page ===========
 def contact(request):
     context={}
     try:
-        pass
+        context['topics']=Tag.objects.all()
     except Exception as e:
         print("Contact Exception : ",e)
     return render(request,'home/contact.html',context)
@@ -63,7 +88,7 @@ def contact(request):
 def aboutUs(request):
     context={}
     try:
-        pass
+        context['topics']=Tag.objects.all()
     except Exception as e:
         print('About us Exception : ',e)
     return render(request,'home/about_us.html',context)
@@ -73,6 +98,7 @@ def aboutUs(request):
 def search(request):
     context={}
     try:
+        context['topics']=Tag.objects.all()
         query=request.GET.get('q')
         print(query)
         if query:
@@ -105,3 +131,4 @@ def search(request):
         print('Search Exception : ',e)
         messages.error(request,'Something went wrong!')
     return render(request,'home/search.html',context)
+
