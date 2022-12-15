@@ -12,6 +12,15 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
+class Tag(models.Model):
+    name=models.CharField(max_length=100)
+    created_at=models.DateTimeField(auto_now_add=True,editable=False)
+    updated_at=models.DateTimeField(auto_now=True, editable=False)
+
+    def __str__(self):
+        return self.name
+
 STATUS = (
     (0,"Draft"),
     (1,"Publish")
@@ -28,6 +37,7 @@ class Post(models.Model):
     status=models.IntegerField(choices=STATUS, default=0)
     publish_date=models.DateTimeField()
     writer=models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank=True)
+    tag=models.ForeignKey(Tag,on_delete=models.SET_NULL,null=True,blank=True)
     created_at=models.DateTimeField(auto_now_add=True,editable=False)
     updated_at=models.DateTimeField(auto_now=True, editable=False)
 
