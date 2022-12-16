@@ -132,3 +132,10 @@ def search(request):
         messages.error(request,'Something went wrong!')
     return render(request,'home/search.html',context)
 
+def termAndCondition(request):
+    context={}
+    try:
+        context['topics']=Tag.objects.all()
+    except Exception as e:
+        print("Term and Condition Exception : ",e)
+    return render(request,'home/term_condition.html',context)

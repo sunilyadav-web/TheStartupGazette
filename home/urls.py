@@ -8,5 +8,6 @@ urlpatterns = [
     path('tag/<tag_name>',tagFilter,name='tag'),
     path('contact/',contact, name='contact'),
     path('aboutus/',aboutUs, name='aboutus'),
-    path('search',search,name='search'),
+    path('search/',search,name='search'),
+    path('term-and-condition/',termAndCondition,name='term-and-condition')
 ]

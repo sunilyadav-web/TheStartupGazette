@@ -16,7 +16,10 @@
             <h5 class="py-2 mb-4">{{post.title}}</h5>
             <img src="{{post.imageURL}}" class="img-fluid" alt="">
             <div class="content">
-                {{post.content|safe}}
+                <article class="blog-post">
+                    {{post.content|safe}}
+
+                </article>
             </div>
             <small>Published on: {{post.publish_date|date:'d-M-Y'}}</small>
             <p>Tags - {{post.tag.name}}</p>
