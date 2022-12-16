@@ -139,3 +139,13 @@ def termAndCondition(request):
     except Exception as e:
         print("Term and Condition Exception : ",e)
     return render(request,'home/term_condition.html',context)
+
+def privacyPolicy(request):
+    context={}
+    try:
+        context['topics']=Tag.objects.all()
+    except Exception as e:
+        print('Privacy Policy Exception : ',e)
+    return render(request,'home/privacy_policy.html',context)
+
+    
