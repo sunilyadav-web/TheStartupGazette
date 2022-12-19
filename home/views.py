@@ -8,8 +8,10 @@ from django.db.models import Q
 def home(request):
     context={}
     posts=Post.objects.filter(status=1)
+    sliders=Slider.objects.all()
     latestPosts=posts
     print(latestPosts)
+    context['sliders']=sliders
     context['topics']=Tag.objects.all()
     context['posts']=posts
 

@@ -152,6 +152,19 @@ border: var(--primary-color);
 }
 
 /* ==========Home Page======= */
+
+/* slider */
+.c-item{
+    height: 500px;
+}
+.c-img{
+    height: 100%;
+    object-fit: cover;
+    filter:brightness(0.6);
+    
+}
+
+
 .card-body p{
     font-size: var(---normal-size) !important;
 }
@@ -161,4 +174,22 @@ border: var(--primary-color);
 }
 .smaller-text{
     font-size: var(--smaller-font-size) !important;
+}
+
+
+/* =========Mobile Style========= */
+@media only screen and (max-width: 576px) {
+    .c-item{
+        height: 250px;
+    }
+    
+    
+}
+/* ========Ipad Stype===== */
+@media only screen and (max-width: 992px) and (min-width: 577px) {
+    .c-item{
+        height: 350px;
+    }
+    
+    
 }

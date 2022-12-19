@@ -65,9 +65,20 @@ class Post(models.Model):
 
 
 class Slider(models.Model):
-    title=models.CharField(max_length=100)
     caption=models.CharField(max_length=70)
     link=models.CharField(max_length=300)
-    color=models.CharField(max_length=20,null=True,blank=True)
+    image=models.ImageField(upload_to='slider_images',null=True,blank=True)
     created_at=models.DateTimeField(auto_now_add=True,editable=False)
     updated_at=models.DateTimeField(auto_now=True, editable=False)
+
+    def __str__(self):
+        return self.caption
+    
+    @property
+    def imageURL(self):
+        try:
+            url=self.image.url
+
+        except:
+            url=''
+        return url
