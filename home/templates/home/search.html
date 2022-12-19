@@ -1,6 +1,6 @@
 {% extends './base.html' %} {% load static %}
 {% block metatags %}{% endblock metatags %}
-{% block title %}{{query}}{% endblock title %}
+{% block title %}Your Query : {{query}}{% endblock title %}
 
 {% block body %}
 
@@ -35,5 +35,8 @@
         </div>
     </div>
 </section>
+<script>
+    var searchElement=document.getElementById('search').value="{{query}}"
+</script>
 
 {% endblock body %}

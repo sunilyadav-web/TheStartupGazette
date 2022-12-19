@@ -64,3 +64,10 @@ class Post(models.Model):
 
 
 
+class Slider(models.Model):
+    title=models.CharField(max_length=100)
+    caption=models.CharField(max_length=70)
+    link=models.CharField(max_length=300)
+    color=models.CharField(max_length=20,null=True,blank=True)
+    created_at=models.DateTimeField(auto_now_add=True,editable=False)
+    updated_at=models.DateTimeField(auto_now=True, editable=False)
