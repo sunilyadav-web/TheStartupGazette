@@ -298,6 +298,29 @@ font-size: var(--h3-font-size);
 .category-content a:hover{
     color: var(--primary-color) !important;
 }
+
+/* ===========Tag Page========== */
+.tag-title {
+    font-size: var(--h2-font-size) !important;
+    color: var(--light-dark-color) !important;
+}
+.tag-title a{
+    
+    color: var(--light-dark-color) !important;
+}
+.tag-title a:hover{
+    color: var(--primary-color) !important;
+
+}
+.tag-content{
+    font-size: var(--normal-font-size);
+}
+.tag-content a{
+    color: var(--light-dark-color);
+}
+.tag-content a:hover{
+    color: var(--primary-color) !important;
+}
 /* ===========Post Detail Page ============= */
 .post-detail-title{
     font-size: var(--h1-font-size);
