@@ -11,8 +11,11 @@
 
 {% block body %}
 <div class="container py-5">
-    <div class="row d-flex align-items-center justify-content-center">
-        <div class="col-md-8">
+    <div class="row ">
+        <div class="col-md-8 m-auto">
+            <p class="text-muted"><small>Home > Post > {{post.title}}</small></p>
+          </div>
+        <div class="col-md-8 m-auto">
             
             <h1 class="py-2 mb-4 post-detail-title" >{{post.title}}</h1>
             <img src="{{post.imageURL}}" class="img-fluid mb-3" alt="">

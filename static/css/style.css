@@ -339,7 +339,10 @@ font-size: var(--h3-font-size);
 .smaller-text{
     font-size: var(--smaller-font-size) !important;
 }
-
+.title{
+    font-size: var(--h1-font-size) !important;
+    color: var(--light-dark-color);
+}
 
 /* =========Mobile Style========= */
 @media only screen and (max-width: 576px) {

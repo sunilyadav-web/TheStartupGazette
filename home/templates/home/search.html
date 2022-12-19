@@ -7,19 +7,22 @@
 <section class="py-5">
     <div class="container">
         <div class="row">
-            <div class="col-8">
-                
+            <div class="col-md-7 ">
+                <p class="text-muted"><small>Home > Search</small></p>
+            </div>
+            <div class="col-md-7">
+
                 {% if querysetLength == 0 %}
-                  <p>Your search <b>- {{query}} -</b> did not match any Post</p>
-                  <span>Suggestions:</span>
-                  <ul>
+                <p>Your search <b>- {{query}} -</b> did not match any Post</p>
+                <span>Suggestions:</span>
+                <ul>
                     <li>Make sure that all words are spelled correctly.</li>
                     <li>Try different keywords.</li>
                     <li>Try more general keywords.</li>
                     <li>Try fewer keywords.</li>
-                  </ul>
-                  {% elif querysetLength >= 1 %}
-                  <h6>Results "{{query}}":</h6>
+                </ul>
+                {% elif querysetLength >= 1 %}
+                <h6>Results "{{query}}":</h6>
                 {% endif %}
                 <div class="py-3">
                     {% for item in posts %}
@@ -32,35 +35,39 @@
                     {% endfor %}
 
                     {% if querysetLength != 0 %}
-                   
+
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             {% if posts.has_previous %}
-                            <li class="page-item"><a class="page-link" href="?q={{query}}&page={{posts.previous_page_number}}">Previous</a></li>
+                            <li class="page-item"><a class="page-link"
+                                    href="?q={{query}}&page={{posts.previous_page_number}}">Previous</a></li>
                             {% endif %}
 
                             {% for item in page_range %}
-                              {% if item == posts.number %}
-                              <li class="page-item"><a class="page-link page-link-active" href="?q={{query}}&page={{item}}">{{item}}</a></li>
-                              {% else %}
-                              <li class="page-item"><a class="page-link" href="?q={{query}}&page={{item}}">{{item}}</a></li>
-                              {% endif %}
+                            {% if item == posts.number %}
+                            <li class="page-item"><a class="page-link page-link-active"
+                                    href="?q={{query}}&page={{item}}">{{item}}</a></li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href="?q={{query}}&page={{item}}">{{item}}</a>
+                            </li>
+                            {% endif %}
                             {% endfor %}
 
                             {% if posts.has_next %}
-                            <li class="page-item"><a class="page-link" href="?q={{query}}&page={{posts.next_page_number}}">Next</a></li>
+                            <li class="page-item"><a class="page-link"
+                                    href="?q={{query}}&page={{posts.next_page_number}}">Next</a></li>
                             {% endif %}
                         </ul>
                     </nav>
                     {% endif %}
                 </div>
-                
+
             </div>
         </div>
     </div>
 </section>
 <script>
-    var searchElement=document.getElementById('search').value="{{query}}"
+    var searchElement = document.getElementById('search').value = "{{query}}"
 </script>
 
 {% endblock body %}
