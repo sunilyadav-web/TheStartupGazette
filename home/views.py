@@ -120,7 +120,7 @@ def search(request):
                 posts=Post.objects.filter(status=1)
                 queryset=posts.filter(Q(title__icontains=query) | Q(content__icontains=query) ).order_by('-publish_date')
                 
-                paginator=Paginator(queryset, 1)
+                paginator=Paginator(queryset, 2)
                 pager_number=request.GET.get('page')
                 page=paginator.get_page(pager_number)
                 page_range=paginator.page_range
@@ -155,4 +155,6 @@ def privacyPolicy(request):
         print('Privacy Policy Exception : ',e)
     return render(request,'home/privacy_policy.html',context)
 
-    
+def robot(request):
+    return render(request,'home/robots.txt')
+    # return HttpResponse('Hello')
