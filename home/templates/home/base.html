@@ -131,16 +131,19 @@
             <h5 class="footer-heading">Latest Posts</h5>
 
             <ul class="footer-links footer-blog-entry list-unstyled">
+              {% for item in latestPosts %}
               <li>
-                <a href="#" class="footer-link">
-                  5 Great Startup Tips for Female Founders
+                <a href="{% url 'home:post' item.slug %}" class="footer-link">
+                 {{item.title | truncatewords:12}}
                 </a>
               </li>             
-              <li>
+              {% endfor %}
+              
+              <!-- <li>
                 <a href="#" class="footer-link">
                     How to Avoid Distraction and Stay Focused During Video Calls?
                 </a>
-              </li>
+              </li> -->
 
             </ul>
 
