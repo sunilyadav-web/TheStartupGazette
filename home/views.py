@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import *
 from django.contrib import messages
 from django.db.models import Q
-
+from django.core.paginator import Paginator
 # =========Home Page================
 def home(request):
     context={}
@@ -119,8 +119,13 @@ def search(request):
 
                 posts=Post.objects.filter(status=1)
                 queryset=posts.filter(Q(title__icontains=query) | Q(content__icontains=query) ).order_by('-publish_date')
-            
-                context['posts']=queryset
+                
+                paginator=Paginator(queryset, 1)
+                pager_number=request.GET.get('page')
+                page=paginator.get_page(pager_number)
+                page_range=paginator.page_range
+                context['posts']=page
+                context['page_range']=page_range
                 context['querysetLength']=queryset.count()
                 if queryset.count() < 1:
                     messages.warning(request,'Query not found '+query)
