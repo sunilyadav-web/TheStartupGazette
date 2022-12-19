@@ -8,11 +8,11 @@
 {% block body %}
 <section class="py-5">
     <div class="container">
-        <div class="row">
+        <div class="row ">
             {% for item in posts  %}
               
-            <div class="col">
-                <div class="card mb-3" style="max-width: 540px;">
+            <div class="col-md-10 m-auto  mb-3">
+                <div class="card mb-3 shadow-sm" >
                     <div class="row g-0">
                       <div class="col-md-4">
                         <img src="{{item.imageURL}}" class="img-fluid rounded-start" alt="...">

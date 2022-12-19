@@ -33,8 +33,8 @@
 
 <body>
 
-  <header id="header">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <header id="header" class="mb-5 ">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark  fixed-top shadow">
       <div class="container">
         <a class="navbar-brand" href="/">DailyNews</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -134,7 +134,7 @@
               {% for item in latestPosts %}
               <li>
                 <a href="{% url 'home:post' item.slug %}" class="footer-link">
-                 {{item.title | truncatewords:12}}
+                 {{item.title | truncatewords:10}}
                 </a>
               </li>             
               {% endfor %}

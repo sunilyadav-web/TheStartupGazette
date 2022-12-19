@@ -12,17 +12,17 @@
 {% block body %}
 <div class="container py-5">
     <div class="row d-flex align-items-center justify-content-center">
-        <div class="col-8">
-            <h5 class="py-2 mb-4">{{post.title}}</h5>
-            <img src="{{post.imageURL}}" class="img-fluid" alt="">
-            <div class="content">
+        <div class="col-md-8">
+            
+            <h1 class="py-2 mb-4 post-detail-title" >{{post.title}}</h1>
+            <img src="{{post.imageURL}}" class="img-fluid mb-3" alt="">
+            <div class="post-detail-content">
                 <article class="blog-post">
                     {{post.content|safe}}
 
                 </article>
             </div>
-            <small>Published on: {{post.publish_date|date:'d-M-Y'}}</small>
-            <p>Tags - {{post.tag.name}}</p>
+            <small><p class="small-text text-muted">Tag > {{post.tag.name}} > {{post.publish_date|date:'d-M-Y'}} > News</p></small>
         </div>
     </div>
 </div>

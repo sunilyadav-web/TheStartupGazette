@@ -11,9 +11,10 @@ def home(request):
     posts=Post.objects.filter(status=1)
     latestPosts=posts[:3]
 
-    print('latest posts' ,latestPosts)
+   
 
     context['posts']=posts
+    context['lastpost']=posts.latest('publish_date')
     context['latestPosts']=latestPosts
     context['topics']=Tag.objects.all()
     context['sliders']=Slider.objects.all()
