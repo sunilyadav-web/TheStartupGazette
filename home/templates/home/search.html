@@ -22,12 +22,12 @@
                     <li>Try fewer keywords.</li>
                 </ul>
                 {% elif querysetLength >= 1 %}
-                <h6>Results "{{query}}":</h6>
+                <h3 class="text-success">Results "{{query}}":</h3>
                 {% endif %}
                 <div class="py-3">
                     {% for item in posts %}
                     <div>
-                        <h6><a href="{% url 'home:post' item.slug %}">{{item.title}}</a></h6>
+                        <h2 class="search-title"><a href="{% url 'home:post' item.slug %}">{{item.title}}</a></h2>
                         <p>
                             {{item.content | safe |truncatewords:30}}
                         </p>

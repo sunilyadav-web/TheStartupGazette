@@ -331,7 +331,17 @@ font-size: var(--h3-font-size);
     height: auto !important;
 }
 
-
+/* ===========Search Page======= */
+.search-title{
+    font-size: var(--h3-font-size);
+}
+.search-title a{
+    color: var(--light-dark-color) !important;
+    
+}
+.search-title a:hover{
+    color: var(--secondary-color) !important;
+}
 /* =======Utils Classes=========== */
 .small-text{
     font-size: var(--small-font-size) !important;

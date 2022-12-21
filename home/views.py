@@ -9,14 +9,12 @@ from .utils import *
 def home(request):
     context={}
     posts=Post.objects.filter(status=1)
-    latestPosts=posts[:3]
 
-   
+    print('request : ',type(request))
+    print(request.is_secure())
 
     context['posts']=posts
     context['lastpost']=posts.latest('publish_date')
-    context['latestPosts']=latestPosts
-    context['topics']=Tag.objects.all()
     context['sliders']=Slider.objects.all()
 
     return render(request,'home/index.html',context)
@@ -25,8 +23,7 @@ def home(request):
 def post(request,slug):
     context={}
     try:
-        context['topics']=Tag.objects.all()
-        context['latestPosts']=Post.objects.filter(status=1)[:3]
+        
         check=Post.objects.filter(slug=slug).exists()
         if check:
             post=Post.objects.get(slug=slug)
@@ -44,8 +41,7 @@ def post(request,slug):
 def categoryFilter(request,name):
     context={}
     try:
-        context['topics']=Tag.objects.all()
-        context['latestPosts']=Post.objects.filter(status=1)[:3]
+        
         check=Category.objects.filter(name=name).exists()
         if check:
             category_obj=Category.objects.get(name=name)
@@ -64,14 +60,9 @@ def categoryFilter(request,name):
 def tagFilter(request,tag_name):
     context={}
     try:
-        print('tag name ',tag_name)
-        context['topics']=Tag.objects.all()
-        context['latestPosts']=Post.objects.filter(status=1)[:3]
         check=Tag.objects.filter(name=tag_name).exists()
-        print('tag status : ',check)
         if check:
             tag_obj=Tag.objects.get(name=tag_name)
-
             queryset=Post.objects.filter(tag=tag_obj)
             posts=queryset.filter(status=1)
             print('tag posts : ',posts)
@@ -88,8 +79,7 @@ def tagFilter(request,tag_name):
 def contact(request):
     context={}
     try:
-        context['topics']=Tag.objects.all()
-        context['latestPosts']=Post.objects.filter(status=1)[:3]
+        pass
     except Exception as e:
         print("Contact Exception : ",e)
     return render(request,'home/contact.html',context)
@@ -98,8 +88,7 @@ def contact(request):
 def aboutUs(request):
     context={}
     try:
-        context['topics']=Tag.objects.all()
-        context['latestPosts']=Post.objects.filter(status=1)[:3]
+       pass
     except Exception as e:
         print('About us Exception : ',e)
     return render(request,'home/about_us.html',context)
@@ -109,8 +98,7 @@ def aboutUs(request):
 def search(request):
     context={}
     try:
-        context['topics']=Tag.objects.all()
-        context['latestPosts']=Post.objects.filter(status=1)[:3]
+        
         query=request.GET.get('q')
         print(query)
         if query:
@@ -152,8 +140,7 @@ def search(request):
 def termAndCondition(request):
     context={}
     try:
-        context['topics']=Tag.objects.all()
-        context['latestPosts']=Post.objects.filter(status=1)[:3]
+        pass
     except Exception as e:
         print("Term and Condition Exception : ",e)
     return render(request,'home/term_condition.html',context)
@@ -161,8 +148,7 @@ def termAndCondition(request):
 def privacyPolicy(request):
     context={}
     try:
-        context['topics']=Tag.objects.all()
-        context['latestPosts']=Post.objects.filter(status=1)[:3]
+        pass
     except Exception as e:
         print('Privacy Policy Exception : ',e)
     return render(request,'home/privacy_policy.html',context)

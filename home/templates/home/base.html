@@ -16,8 +16,11 @@
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
 
-  <!-- ================GOOGLE FONTS=========== -->
+  <!-- ================BOX ICONS CSS=========== -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
+  <!-- ==============BOOTSTRAP ICONS================ -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 
   <!-- ================CUSTOM TEMPLATE CSS=============== -->
 
@@ -33,8 +36,8 @@
 
 <body>
 
-  <header id="header" class="mb-5 ">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark  fixed-top shadow">
+  <header id="header" class="">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark  shadow">
       <div class="container">
         <a class="navbar-brand" href="/">DailyNews</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -128,7 +131,7 @@
           
 
           <div class="col-lg-3">
-            <h5 class="footer-heading">Latest Posts</h5>
+            <h5 class="footer-heading">Recent Articles</h5>
 
             <ul class="footer-links footer-blog-entry list-unstyled">
               {% for item in latestPosts %}
@@ -138,12 +141,6 @@
                 </a>
               </li>             
               {% endfor %}
-              
-              <!-- <li>
-                <a href="#" class="footer-link">
-                    How to Avoid Distraction and Stay Focused During Video Calls?
-                </a>
-              </li> -->
 
             </ul>
 
@@ -163,11 +160,11 @@
 
           <div class="col-md-6">
             <div class="social-links mb-3 mb-lg-0 text-center text-md-end">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              <span class="text-light smaller-text ps-2">Connect with </span>
+              <a href="#" class="twitter text-light"><i class='bi bi-twitter' ></i></a>
+              <a href="#" class="instagram text-light"><i class='bi bi-instagram' ></i></a>
+              <a href="#" class="google-plus text-light"><i class="bi bi-skype"></i></a>
+              <a href="#" class="linkedin text-light"><i class='bi bi-linkedin' ></i></a>
             </div>
 
           </div>
