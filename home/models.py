@@ -28,7 +28,7 @@ STATUS = (
 
 class Post(models.Model):
     title=models.CharField(max_length=600, unique=True)
-    image=models.ImageField(upload_to='post_images',null=True,blank=True)
+    image=models.ImageField(upload_to='post_images',null=True, default="../static/img/deafult.jpg")
     content=RichTextField()
     category=models.ForeignKey(Category,on_delete=models.SET_NULL, null=True,blank=True)
     meta_description=models.TextField(blank=True,null=True)

@@ -128,8 +128,9 @@ color:white;
                 {{item.content | truncatewords:25 | safe}}
               </div>
             </a>
-            <p><small class="text-primary fw-semibold">News</small> <small
-                class="text-muted">{{item.publish_date|date:'d M Y'}}</small></p>
+            <p><small class="text-primary fw-semibold">News</small> 
+              <small class="text-muted">{{item.publish_date|date:'d M Y'}}</small></p>
+              {% comment %} <small class="text-muted">{{item.publish_date|timesince}}</small></p> {% endcomment %}
           </div>
 
           <hr>
@@ -148,7 +149,7 @@ color:white;
                 <div class="text-light p-3">
                   <h3 class="tranding-title"><a href="{% url 'home:post' lastpost.slug %}" class="text-light">
                       {{lastpost.title | title |truncatewords:15}}</a></h3>
-                  <p><small class="text-muted">{{lastpost.publish_date | date:'d M Y'}}</small></p>
+                  <p><small class="text-muted">{{lastpost.publish_date |timesince}} Ago</small></p>
                 </div>
               </a>
             </div>
@@ -180,7 +181,7 @@ color:white;
   <div class="container">
     <div class="row startup-story gy-3">
       <h1 class="title">Startup Stories</h1>
-      {% for item in posts %}
+      {% for item in startup_stories %}
       <div class="col-lg-4 col-md-5 col-sm-11 px-3">
         <div class="card">
           <img src="{{item.imageURL}}" class="card-img-top" alt="..."

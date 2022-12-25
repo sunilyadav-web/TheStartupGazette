@@ -10,14 +10,23 @@ def home(request):
     context={}
     posts=Post.objects.filter(status=1)
 
-    print('request : ',type(request))
-    print(request.is_secure())
+    try:
+        tag=Tag.objects.get(name='startup stories')
+        startup_stories=posts.filter(tag=tag)[:6]
+        print('Startup Stores Objects : ',startup_stories)
+    except Exception as e:
+        print('Home tag filter Exception : ',e)
+        startup_stories=Post.objects.none()
 
-    context['posts']=posts
+    context['startup_stories']=startup_stories
+    context['posts']=Post.objects.filter(status=1).order_by('-publish_date')[:10]
     context['lastpost']=posts.latest('publish_date')
     context['sliders']=Slider.objects.all()
 
     return render(request,'home/index.html',context)
+
+def error(request):
+    return HttpResponse('Hello error')
 
 # =======Post Detail Page=============
 def post(request,slug):

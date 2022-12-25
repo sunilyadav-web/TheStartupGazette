@@ -3,6 +3,7 @@ from .views import *
 app_name='home'
 urlpatterns = [
     path('',home,name='home'),
+    path('**',error,name='error'),
     path('post/<slug>',post,name='post'),
     path('category/<name>',categoryFilter,name='category'),
     path('tag/<tag_name>',tagFilter,name='tag'),
