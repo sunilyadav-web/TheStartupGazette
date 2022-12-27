@@ -5,11 +5,14 @@ from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator
 from .utils import *
+
+
 # =========Home Page================
 def home(request):
     context={}
     posts=Post.objects.filter(status=1)
-
+    
+    # ---------Getting Start Up Stories-------
     try:
         tag=Tag.objects.get(name='startup stories')
         startup_stories=posts.filter(tag=tag)[:6]
@@ -17,7 +20,25 @@ def home(request):
     except Exception as e:
         print('Home tag filter Exception : ',e)
         startup_stories=Post.objects.none()
+    # ---------End Getting Start Up Stories-------
 
+
+    # -----Getting Featured Posts---------
+    featured_objcts=[]
+    featured=Featured.objects.order_by('-created_at')[:2]
+
+    for item in featured:
+        split=item.link.split('/')
+        slug=split[-1]
+        print('featured slug :',slug)
+        check=Post.objects.filter(slug=slug).exists()
+        if check:
+            object=Post.objects.get(slug=slug)
+            featured_objcts.append(object)
+
+    # ----------End Getting Featured Post--------- 
+
+    context['featured']=featured_objcts
     context['startup_stories']=startup_stories
     context['posts']=Post.objects.filter(status=1).order_by('-publish_date')[:10]
     context['lastpost']=posts.latest('publish_date')

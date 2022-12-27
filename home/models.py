@@ -82,3 +82,19 @@ class Slider(models.Model):
         except:
             url=''
         return url
+
+class Featured(models.Model):
+    link=models.TextField(max_length=1000)
+    created_at=models.DateTimeField(auto_now_add=True,editable=False,verbose_name='Featured At')
+    updated_at=models.DateTimeField(auto_now=True, editable=False)
+
+    def __str__(self):
+        try:
+            split=self.link.split('/')
+            slug=split[-1]
+            obj=Post.objects.get(slug=slug)
+            
+        except Exception as e:
+            print('Featured Model Exception : ',e)
+            obj='Enter a Valid Link-'
+        return str(obj)

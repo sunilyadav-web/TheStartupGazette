@@ -87,20 +87,23 @@ color:white;
           </div>
         </div>
       </div> -->
+{% for item  in featured %}
+  
 
     <div class="col-md-6 m-auto mb-5">
       <div class="card featured shadow-sm">
         <div class="card-header ">
           <h2 class="featured-title ">Featured</h2>
         </div>
-        <img class="featured-img" src="{% static 'img/post-landscape-7.jpg'%}" class="card-img-top" alt="...">
+        <img class="featured-img" src="{{item.imageURL}}" class="card-img-top" alt="...">
         <div class="card-body">
-          <h3 class="card-title featured-subtitle"><a href="#"> Special title treatment Lorem ipsum dolor, sit amet consectetur adipisicing elit....</a></h3>
-          <div class="card-text featured-content">With supporting text below as a natural lead-in to additional content. The startup also said carbon as a new crop could become the fift by 2030......</div>
+          <h3 class="card-title featured-subtitle"><a href="{% url 'home:post' item.slug %}">{{item.title | truncatewords:13}}</a></h3>
+          <div class="card-text featured-content">{{item.content | truncatewords:20 | safe}}</div>
         </div>
       </div>
     </div>
-    <div class="col-md-6 m-auto mb-5">
+    {% endfor %}
+    <!-- <div class="col-md-6 m-auto mb-5">
       <div class="card featured shadow-sm">
         <div class="card-header ">
           <h2 class="featured-title ">Featured</h2>
@@ -112,7 +115,7 @@ color:white;
         </div>
       </div>
     </div>
-    </div>
+    </div> -->
 
     <div class="row g-5">
       <div class="col-md-8">
