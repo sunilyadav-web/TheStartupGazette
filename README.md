@@ -1,0 +1,2 @@
+# TheStartupGazette
+The Startup company
