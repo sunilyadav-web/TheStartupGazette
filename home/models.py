@@ -58,7 +58,6 @@ class Post(models.Model):
 
     def save(self,  *args, **kwargs):
         s=generate_slug(self.title)
-        print('this is slug',s)
         self.slug=s
         super(Post,self).save(*args, **kwargs)
 
