@@ -97,3 +97,15 @@ class Featured(models.Model):
             print('Featured Model Exception : ',e)
             obj='Enter a Valid Link-'
         return str(obj)
+
+class Contact(models.Model):
+    name=models.CharField(max_length=50,verbose_name='Full Name')
+    email=models.EmailField()
+    phone_no=models.IntegerField(verbose_name='Phone No')
+    message=models.TextField(max_length=500)
+    created_at=models.DateTimeField(auto_now_add=True,editable=False,verbose_name='Featured At')
+    updated_at=models.DateTimeField(auto_now=True, editable=False)
+
+
+    def __str__(self):
+        return f"{self.name}  Email - {self.email}"

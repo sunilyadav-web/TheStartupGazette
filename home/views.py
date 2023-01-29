@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator
 from .utils import *
+from django.views import generic
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 # =========Home Page================
@@ -106,13 +108,12 @@ def tagFilter(request,tag_name):
 
 
 # =========Contact Page ===========
-def contact(request):
-    context={}
-    try:
-        pass
-    except Exception as e:
-        print("Contact Exception : ",e)
-    return render(request,'home/contact.html',context)
+class ContactView(SuccessMessageMixin,generic.CreateView):
+    template_name='home/contact.html'
+    model=Contact
+    success_url='/contact/'
+    fields='__all__'
+    success_message=('ThanYou, Will Responde you very soon!')
 
 # ============About us Page============
 def aboutUs(request):

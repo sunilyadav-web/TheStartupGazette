@@ -1,5 +1,5 @@
 {% extends './base.html' %} {% load static %}
-
+{% load crispy_forms_tags %}
 {% block metatags %}
 {% endblock metatags %}
 
@@ -16,32 +16,23 @@
       <div class="w-100"></div>
       <div class="col-md-6 m-auto">
         <h4 class="text-center">Feel Free to Contact Us</h4>
-        <form>
-          <div class="mb-3">
-            <label for="fname" class="form-label">Full Name</label>
-            <input type="password" class="form-control" id="fname" name="full-name">
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-          </div>
-          <div class="mb-3">
-            <label for="phone" class="form-label">Phone</label>
-            <input type="number" class="form-control" id="phone" name="phone">
-          </div>
 
-          <div class="mb-3">
-            <label for="query" class="form-label">Message</label>
-            <textarea class="form-control" id="query" name="query" rows="3"></textarea>
-          </div>
+        <form method="post", action="">
+          {% csrf_token %}
+          {{ form | crispy }}          
+
           <div class="d-grid">
             <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
+          </div> 
         </form>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  var x= document.getElementById('id_message').rows='5'
+  console.log(x)
+</script>
 
 {% endblock body %}
