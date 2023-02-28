@@ -87,7 +87,7 @@ color:white;
           </div>
         </div>
       </div> -->
-{% for item  in featured %}
+{% for item  in featured_post_list %}
   
 
     <div class="col-md-6 m-auto mb-5">
@@ -103,19 +103,6 @@ color:white;
       </div>
     </div>
     {% endfor %}
-    <!-- <div class="col-md-6 m-auto mb-5">
-      <div class="card featured shadow-sm">
-        <div class="card-header ">
-          <h2 class="featured-title ">Featured</h2>
-        </div>
-        <img class="featured-img" src="{% static 'img/post-landscape-8.jpg'%}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h3 class="card-title featured-subtitle"><a href="#">Special title treatment Lorem ipsum dolor, sit amet consectetur adipisicing elit....</a></h3>
-          <div class="card-text featured-content">With supporting text below as a natural lead-in to additional content. The startup also said carbon as a new crop in India  for smallholder farmers by 2030......</div>
-        </div>
-      </div>
-    </div>
-    </div> -->
 
     <div class="row g-5">
       <div class="col-md-8">
@@ -147,12 +134,12 @@ color:white;
           <div class="  ">
 
             <div class="">
-              <a href="{% url 'home:post' lastpost.slug %}">
-                <img src="{{lastpost.imageURL}}" class="card-img-top rounded-top" alt="...">
+              <a href="{% url 'home:post' last_post.slug %}">
+                <img src="{{last_post.imageURL}}" class="card-img-top rounded-top" alt="...">
                 <div class="text-light p-3">
-                  <h3 class="tranding-title"><a href="{% url 'home:post' lastpost.slug %}" class="text-light">
-                      {{lastpost.title | title |truncatewords:15}}</a></h3>
-                  <p><small class="text-muted">{{lastpost.publish_date |timesince}} Ago</small></p>
+                  <h3 class="tranding-title"><a href="{% url 'home:post' last_post.slug %}" class="text-light">
+                      {{last_post.title | title |truncatewords:15}}</a></h3>
+                  <p><small class="text-muted">{{last_post.publish_date |timesince}} Ago</small></p>
                 </div>
               </a>
             </div>

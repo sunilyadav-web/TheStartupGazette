@@ -1,15 +1,17 @@
 from django.urls import path
 from .views import *
-app_name='home'
+
+app_name = "home"
+
 urlpatterns = [
-    path('',home,name='home'),
-    path('**',error,name='error'),
-    path('post/<slug>',post,name='post'),
-    path('category/<name>',categoryFilter,name='category'),
-    path('tag/<tag_name>',tagFilter,name='tag'),
-    path('contact/',ContactView.as_view(), name='contact'),
-    path('aboutus/',aboutUs, name='aboutus'),
-    path('search/',search,name='search'),
-    path('term-and-condition/',termAndCondition,name='term-and-condition'),
-    path('privacy-policy/',privacyPolicy,name="privacy-policy"),
+    path('', HomeView.as_view(), name='home'),
+    path('**', error, name='error'),
+    path('post/<str:slug>/', PostDetailView.as_view(), name='post'),
+    path('category/<str:name>', category_filter, name='category'),
+    path('tag/<str:name>/', tag_filter, name='tag'),
+    path('contact/', ContactView.as_view(), name='contact'),
+    path('about-us/', AboutUsView.as_view(), name='about_us'),
+    path('search/', search, name='search'),
+    path('term-and-condition/', TermAndConditionView.as_view(), name='term_and_condition'),
+    path('privacy-policy/', PrivacyPolicyView.as_view(), name="privacy_policy"),
 ]
