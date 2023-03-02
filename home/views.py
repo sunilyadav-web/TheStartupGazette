@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import TemplateView, DetailView
 
-from .models import *
+from home.models import *
 from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator
@@ -76,7 +76,7 @@ class ContactView(SuccessMessageMixin, generic.CreateView):
     model = Contact
     success_url = '/contact/'
     fields = '__all__'
-    success_message = 'ThanYou, Will Responde you very soon!'
+    success_message = 'Thank you for getting in touch. will respond to you very soon!'
 
 
 class AboutUsView(TemplateView):
