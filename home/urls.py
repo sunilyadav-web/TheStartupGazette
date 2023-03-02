@@ -5,10 +5,10 @@ app_name = "home"
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
-    path('**', error, name='error'),
+    path('**/', error, name='error'),
     path('post/<str:slug>/', PostDetailView.as_view(), name='post'),
-    path('category/<str:name>', category_filter, name='category'),
-    path('tag/<str:name>/', tag_filter, name='tag'),
+    path('category/<str:name>', CategoryFilterView.as_view(), name='category'),
+    path('tag/<str:name>/', TagFilterView.as_view(), name='tag'),
     path('contact/', ContactView.as_view(), name='contact'),
     path('about-us/', AboutUsView.as_view(), name='about_us'),
     path('search/', search, name='search'),

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import TemplateView, DetailView
 
@@ -47,40 +47,28 @@ class PostDetailView(DetailView):
     template_name = "home/post_detail.html"
 
 
-def category_filter(request, name):
-    context = {}
-    try:
+class CategoryFilterView(TemplateView):
+    template_name = "home/category_filter.html"
 
-        check = Category.objects.filter(name=name).exists()
-        if check:
-            category_obj = Category.objects.get(name=name)
-            queryset = Post.objects.filter(category=category_obj)
-            posts = queryset.filter(status=1)
-            context['posts'] = posts
-            context['category'] = name
-        else:
-            messages.warning(request, 'This ' + name + ' Category Not Found!')
-    except Exception as e:
-        print('Category Filter Exception : ', e)
-        messages.error(request, 'Somthing went Wrong!')
-    return render(request, 'home/category.html', context)
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        category_object = get_object_or_404(Category, name=kwargs.get('name', None))
+        ctx['posts'] = Post.objects.filter(category=category_object, status=1)
+        return ctx
 
 
-def tag_filter(request, name):
-    context = {}
-    try:
-        check = Tag.objects.filter(name=name).exists()
-        if check:
-            tag_obj = Tag.objects.get(name=name)
-            queryset = Post.objects.filter(tag=tag_obj)
-            posts = queryset.filter(status=1)
-            context['posts'] = posts
-            context['tag'] = name
-        else:
-            messages.warning(request, 'Topic Not Found! ' + name)
-    except Exception as e:
-        print("Tag Exception : ", e)
-    return render(request, 'home/tag.html', context)
+class TagFilterView(TemplateView):
+    template_name = "home/tag_filter.html"
+
+    def setup(self, request, *args, **kwargs):
+        super().setup(request, *args, **kwargs)
+        self.tag_object = get_object_or_404(Tag, name=kwargs.get('name', None))
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['posts'] = Post.objects.filter(tag=self.tag_object, status=1)
+        ctx['tag'] = self.tag_object
+        return ctx
 
 
 class ContactView(SuccessMessageMixin, generic.CreateView):
@@ -115,8 +103,8 @@ def search(request):
             else:
 
                 posts = Post.objects.filter(status=1)
-                queryset = posts.filter(Q(title__icontains=query) | Q(content__icontains=query)).order_by(
-                    '-publish_date')
+                queryset = posts.filter(
+                    Q(title__icontains=query) | Q(content__icontains=query)).order_by('-publish_date')
 
                 paginator = Paginator(queryset, 2)
                 pager_number = request.GET.get('page')
