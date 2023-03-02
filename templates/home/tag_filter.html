@@ -3,7 +3,7 @@
 {% block metatags %}
 {% endblock metatags %}
 
-{% block title %}Daily News {{tag}}{% endblock title %}
+{% block title %}Post for {{tag}}{% endblock title %}
 
 {% block body %}
 <section class="py-5">
@@ -13,7 +13,6 @@
             <p class="text-muted"><small>Home > Topic > {{tag}}</small></p>
           </div>
             {% for item in posts  %}
-              
             <div class="col-md-10 m-auto  mb-3">
                 <div class="card mb-3 shadow-sm " >
                     <div class="row g-0">
@@ -29,7 +28,6 @@
                           </a>
                           </div>
                           </div>
-                            
                           <p class="card-text"><small class="text-muted">Published:  {{item.publish_date | date:'d M Y'}}</small></p>
                         </div>
                       </div>
