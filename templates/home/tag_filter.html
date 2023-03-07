@@ -3,7 +3,7 @@
 {% block metatags %}
 {% endblock metatags %}
 
-{% block title %}Post for {{tag}}{% endblock title %}
+{% block title %}{{tag}} - The Startup Gazette{% endblock title %}
 
 {% block body %}
 <section class="py-5">
@@ -17,7 +17,7 @@
                 <div class="card mb-3 shadow-sm " >
                     <div class="row g-0">
                       <div class="col-md-4">
-                        <img src="{{item.imageURL}}" class="img-fluid rounded-start" alt="...">
+                        <img src="{{item.image_url}}" class="img-fluid rounded-start" alt="...">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">

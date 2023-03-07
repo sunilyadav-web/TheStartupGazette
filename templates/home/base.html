@@ -1,6 +1,5 @@
-<!doctype html> {% load static %}
+<!doctype html> {% load static %} {% load menu_generator %}
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,44 +25,26 @@
 
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <!-- ================CSS STYLE BLOCK=========== -->
-    <style>
-    {% block css %}{% endblock css %}
-
-
-    </style>
-
-
+    <style>{% block css %}{% endblock css %}</style>
 </head>
-
 <body>
-
 <header id="header" class="">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark  shadow">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
         <div class="container">
-            <a class="navbar-brand" href="/">TSG</a>
+            <a class="navbar-brand fw-bold" href="/">TSG</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    data-bs-target="#theStartupNav"
+                    aria-controls="theStartupNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="theStartupNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% get_menu "NAV_MENU_LEFT" as left_menu %}
+                    {% for item in left_menu %}
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link {% if item.selected %} active {% endif %}" aria-current="page" href="{{item.url}}">{{item.name}}</a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/category/stories">Stories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home:category' 'article' %}">Articles</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home:about_us' %}">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home:contact' %}">Contact</a>
-                    </li>
+                    {% endfor %}
                 </ul>
                 <form class="d-flex" role="search" method="get" action="{% url 'home:search' %}">
                     <input class="form-control me-2" type="search" placeholder="Search" name="q" aria-label="Search"
@@ -85,43 +66,42 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 {% endfor %}
-
             </div>
         </div>
     </div>
-
     {% block body %}
 
     {% endblock body %}
 </main>
 
 <footer id="footer" class="footer bg-dark ">
-
     <div class="footer-content">
         <div class="container">
             <div class="row g-5 py-3">
                 <div class="col-lg-3">
                     <h5 class="footer-heading ">About</h5>
                     <ul class="footer-links list-unstyled ">
-                        <li><a href="{% url 'home:about_us' %}" class="footer-link"></i> About us</a></li>
-                        <li><a href="{% url 'home:privacy_policy' %}" class="footer-link">Privacy Policy</a></li>
-                        <li><a href="{% url 'home:term_and_condition' %}" class="footer-link"> Terms and Condition</a>
+                        {% get_menu "FOOTER_LEFT_MENU" as footer_left_menu %}
+                        {% for item in footer_left_menu %}
+                        <li>
+                            <a href="{{item.url}}" class="footer-link">{{item.name}}</a>
                         </li>
-                        <li><a href="{% url 'home:contact' %}" class="footer-link"> Contact</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="col-6 col-lg-3">
                     <h5 class="footer-heading ">Topics</h5>
                     <ul class="footer-links list-unstyled ">
                         {% for item in topics %}
-                        <li><a href="{% url 'home:tag' item.name %}" class="footer-link">{{item.name | title}}</a></li>
+                        <li>
+                            <a href="{% url 'home:tag' item.name %}" class="footer-link">{{item.name | title}}</a>
+                        </li>
                         {% endfor %}
                     </ul>
                 </div>
                 <div class="col-6 col-lg-3">
                     <h5 class="footer-heading ">Submit</h5>
-                    <ul class="footer-links list-unstyled ">
-
+                    <ul class="footer-links list-unstyled">
                         <li><a href="#" class="footer-link">Submit News</a></li>
                         <li><a href="#" class="footer-link">Submit Your Startup Story</a></li>
                         <li><a href="#" class="footer-link">Submit Guest Post</a></li>
@@ -170,7 +150,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
-
 
 <!-- ================CUSTOM TEMPLATE MAIN JS============= -->
 <script src="{% static 'Js/main.js' %}"></script>

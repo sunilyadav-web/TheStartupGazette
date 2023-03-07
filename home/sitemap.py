@@ -4,7 +4,7 @@ from .models import *
 
 class StaticViewSitemap(Sitemap):
     def items(self):
-        urls= ['home:home','home:aboutus','home:search','home:term-and-condition','home:privacy-policy']
+        urls= ['home:home','home:about_us','home:search','home:term_and_condition','home:privacy_policy']
         return urls   
         
     def location(self, item):

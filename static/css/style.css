@@ -182,10 +182,6 @@ border: var(--primary-color);
 
 
 /* Featured */
-.featured{
-    /* height: 200px;
-    margin-bottom: 10rem !important; */
-}
 .featured-title{
     font-size: var(--h2-font-size);
     font-family: var(--body-font);
@@ -359,14 +355,10 @@ font-size: var(--h3-font-size);
     .c-item{
         height: 250px;
     }
-    
-    
 }
 /* ========Ipad Stype===== */
 @media only screen and (max-width: 992px) and (min-width: 577px) {
     .c-item{
         height: 350px;
     }
-    
-    
 }

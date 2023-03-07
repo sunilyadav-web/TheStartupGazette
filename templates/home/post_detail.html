@@ -13,19 +13,19 @@
 <div class="container py-5">
     <div class="row ">
         <div class="col-md-8 m-auto">
-            <p class="text-muted"><small>Home > Post > {{post.title}}</small></p>
-          </div>
+            <p class="text-muted"><small>Home > Post > {{post.title|truncatewords:7}}</small></p>
+        </div>
         <div class="col-md-8 m-auto">
-            
-            <h1 class="py-2 mb-4 post-detail-title" >{{post.title}}</h1>
-            <img src="{{post.imageURL}}" class="img-fluid mb-3" alt="">
+            <h1 class="py-2 mb-4 post-detail-title">{{post.title}}</h1>
+            <img src="{{post.image_url}}" class="img-fluid mb-3" alt="{{post.title}}">
             <div class="post-detail-content">
                 <article class="blog-post">
                     {{post.content|safe}}
-
                 </article>
             </div>
-            <small><p class="small-text text-muted">Publish > {{post.publish_date|date:'d-M-Y'}} </p></small>
+            <small>
+                <p class="small-text text-muted">Publish > {{post.publish_date|date:'d-M-Y'}} </p>
+            </small>
         </div>
     </div>
 </div>
