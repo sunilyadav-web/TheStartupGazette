@@ -32,7 +32,6 @@ class HomeView(TemplateView):
         ctx['startup_stories'] = startup_stories
         ctx['featured_post_list'] = featured_post_list
         ctx['sliders'] = Slider.objects.all()
-        ctx['active_nav'] = "home"
         return ctx
 
 
@@ -77,19 +76,11 @@ class ContactView(SuccessMessageMixin, generic.CreateView):
     fields = '__all__'
     success_message = 'Thank you for getting in touch. will respond to you very soon!'
 
-    def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs)
-        ctx['active_nav'] = "contact"
-        return ctx
 
 
 class AboutUsView(TemplateView):
     template_name = "home/about_us.html"
 
-    def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs)
-        ctx['active_nav'] = "about_us"
-        return ctx
 
 
 def search(request):

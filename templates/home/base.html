@@ -1,4 +1,4 @@
-<!doctype html> {% load static %}
+<!doctype html> {% load static %} {% load menu_generator %}
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -33,27 +33,18 @@
         <div class="container">
             <a class="navbar-brand fw-bold" href="/">TSG</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    data-bs-target="#theStartupNav"
+                    aria-controls="theStartupNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="theStartupNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% get_menu "NAV_MENU_LEFT" as left_menu %}
+                    {% for item in left_menu %}
                     <li class="nav-item">
-                        <a class="nav-link {% if active_nav == 'home' %} active {% endif %}" aria-current="page" href="/">Home</a>
+                        <a class="nav-link {% if item.selected %} active {% endif %}" aria-current="page" href="{{item.url}}">{{item.name}}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if category.name  == 'stories' %} active {% endif %}" href="{% url 'home:category' 'stories' %}">Stories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if category.name  == 'article' %} active {% endif %}" href="{% url 'home:category' 'article' %}">Articles</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if active_nav == 'about_us' %} active {% endif %}" href="{% url 'home:about_us' %}">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if active_nav == 'contact' %} active {% endif %}" href="{% url 'home:contact' %}">Contact</a>
-                    </li>
+                    {% endfor %}
                 </ul>
                 <form class="d-flex" role="search" method="get" action="{% url 'home:search' %}">
                     <input class="form-control me-2" type="search" placeholder="Search" name="q" aria-label="Search"

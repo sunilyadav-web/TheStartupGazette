@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
+    'menu_generator',
     'django.contrib.sitemaps',
     'crispy_forms',
     'crispy_bootstrap5',
