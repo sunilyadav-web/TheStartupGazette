@@ -14,14 +14,14 @@
             <div class="card mb-3 shadow-sm" >
                 <div class="row g-0">
                   <div class="col-md-4">
-                    <img src="{{item.imageURL}}" class="img-fluid rounded-start" alt="...">
+                    <img src="{{item.image_url}}" class="img-fluid rounded-start" alt="...">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body ">
                       <h2 class="card-title category-title"><a href="{% url 'home:post' item.slug %}">{{item.title}}</a></h2>
                       <div class="card-text">
                         <div class="category-content">
-<a href="{% url 'home:post' item.slug %}">
+                        <a href="{% url 'home:post' item.slug %}">
                           {{item.content | safe |truncatewords:20}}
                         </a>
                         </div>

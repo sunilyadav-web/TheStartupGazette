@@ -1,6 +1,5 @@
 {% extends './base.html' %} {% load static %}
-{% block title %}The Startup Gazette
-{% endblock title %}
+{% block title %}The Startup Gazette{% endblock title %}
 {% block css %}
 .slider-link{
 text-decoration: underline !important;
@@ -9,161 +8,110 @@ color:white;
 {% endblock css %}
 {% block body %}
 <div class="container py-5">
-  <div id="hero-carousel" class="carousel slide" data-bs-ride="true">
+    <div id="hero-carousel" class="carousel slide" data-bs-ride="true">
 
-    <div class="carousel-inner">
-      {% for item in sliders %}
+        <div class="carousel-inner">
+            {% for item in sliders %}
+              <div class="carousel-item active c-item">
+                  <img src="{{item.image_url}}" class="d-block w-100 rounded c-img" alt="...">
+                  <div class="carousel-caption ">
+                      <h3 class="slider-text">
+                        <a class="slider-link" href="{{item.link}}" target="_blank">{{item.caption|title}}</a>
+                      </h3>
+                  </div>
+              </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<section class="py-5">
+  <div class="container">
+    <div class="row mb-2">
 
-      <div class="carousel-item active c-item">
-        <img src="{{item.imageURL}}" class="d-block w-100 rounded c-img" alt="...">
-        <div class="carousel-caption ">
-          {% if item.color %}
-          <h3 class="slider-text"><a href="{{item.link}}" class="slider-link" target="_blank">
-            {{item.caption | title}}</a></h3>
-          {% else %}
-          <h3 class="slider-text"><a class="slider-link" href="{{item.link}}" target="_blank">
-            {{item.caption |  title}}</a></h3>
-          {% endif %}
-
+      {% for item in featured_post_list %}
+      <div class="col-md-6 m-auto mb-5">
+        <div class="card featured shadow-sm">
+          <div class="card-header ">
+            <h2 class="featured-title ">Featured</h2>
+          </div>
+          <img class="featured-img" src="{{item.image_url}}" class="card-img-top" alt="{{item.title}}">
+          <div class="card-body">
+            <h3 class="card-title featured-subtitle">
+              <a href="{% url 'home:post' item.slug %}">{{item.title|truncatewords:13}}</a>
+            </h3>
+            <div class="card-text featured-content">{{item.content|truncatewords:20|safe}}</div>
+          </div>
         </div>
       </div>
       {% endfor %}
 
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
-<section class="py-5">
-  <div class="container">
-
-    <div class="row mb-2">
-      <!-- <div class="col-md-6">
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-primary">World</strong>
-            <h3 class="mb-0">Featured post</h3>
-            <div class="mb-1 text-muted">Nov 12</div>
-            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to
-              additional content.</p>
-            <a href="#" class="stretched-link">Continue reading</a>
-          </div>
-          <div class="col-auto d-none d-lg-block">
-            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
-              aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef"
-                dy=".3em">Thumbnail</text>
-            </svg>
-
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-success">Design</strong>
-            <h3 class="mb-0">Post title</h3>
-            <div class="mb-1 text-muted">Nov 11</div>
-            <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional
-              content.</p>
-            <a href="#" class="stretched-link">Continue reading</a>
-          </div>
-          <div class="col-auto d-none d-lg-block">
-            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
-              aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef"
-                dy=".3em">Thumbnail</text>
-            </svg>
-
-          </div>
-        </div>
-      </div> -->
-{% for item  in featured_post_list %}
-  
-
-    <div class="col-md-6 m-auto mb-5">
-      <div class="card featured shadow-sm">
-        <div class="card-header ">
-          <h2 class="featured-title ">Featured</h2>
-        </div>
-        <img class="featured-img" src="{{item.imageURL}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h3 class="card-title featured-subtitle"><a href="{% url 'home:post' item.slug %}">{{item.title | truncatewords:13}}</a></h3>
-          <div class="card-text featured-content">{{item.content | truncatewords:20 | safe}}</div>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-
-    <div class="row g-5">
-      <div class="col-md-8">
-        <article class="blog-post">
-          <h1 class="lastest-title mb-4 shadow-sm">Latest</h1>
-
-          {% for item in posts %}
-
-          <div class="latest-group">
-            <a href="{% url 'home:post' item.slug %}">
-              <h2 class="latest-group-title">{{item.title | title}}</h2>
-              <div class="latest-content">
-                {{item.content | truncatewords:25 | safe}}
-              </div>
-            </a>
-            <p><small class="text-primary fw-semibold">News</small> 
-              <small class="text-muted">{{item.publish_date|date:'d M Y'}}</small></p>
-              {% comment %} <small class="text-muted">{{item.publish_date|timesince}}</small></p> {% endcomment %}
-          </div>
-
-          <hr>
-          {% endfor %}
-        </article>
-
-      </div>
-
-      <div class="col-md-4">
-        <div class="position-sticky bg-dark rounded shadow-sm" style="top: 2rem;">
-          <div class="  ">
-
-            <div class="">
-              <a href="{% url 'home:post' last_post.slug %}">
-                <img src="{{last_post.imageURL}}" class="card-img-top rounded-top" alt="...">
-                <div class="text-light p-3">
-                  <h3 class="tranding-title"><a href="{% url 'home:post' last_post.slug %}" class="text-light">
-                      {{last_post.title | title |truncatewords:15}}</a></h3>
-                  <p><small class="text-muted">{{last_post.publish_date |timesince}} Ago</small></p>
+      <div class="row g-5">
+        <div class="col-md-8">
+          <article class="blog-post">
+            <h1 class="lastest-title mb-4 shadow-sm">Latest</h1>
+            {% for item in posts %}
+            <div class="latest-group">
+              <a href="{% url 'home:post' item.slug %}">
+                <h2 class="latest-group-title">{{item.title | title}}</h2>
+                <div class="latest-content">
+                  {{item.content | truncatewords:25 | safe}}
                 </div>
               </a>
+              <p><small class="text-primary fw-semibold">News</small>
+                <small class="text-muted">{{item.publish_date|date:'d M Y'}}</small></p>
+              {% comment %} <small class="text-muted">{{item.publish_date|timesince}}</small></p> {% endcomment %}
             </div>
-          </div>
-          <div class="">
+            <hr>
+            {% endfor %}
+          </article>
+        </div>
+        <div class="col-md-4">
+          <div class="position-sticky bg-dark rounded shadow-sm" style="top: 2rem;">
+            <div class="  ">
 
-            <div class="card  bg-light-dark  mb-3 w-100">
-              <div class="card-header">
-                <h3 class="fst-italic text-light text-center tranding-title pt-2">Trending Stories</h3>
+              <div class="">
+                <a href="{% url 'home:post' last_post.slug %}">
+                  <img src="{{last_post.image_url}}" class="card-img-top rounded-top" alt="...">
+                  <div class="text-light p-3">
+                    <h3 class="tranding-title"><a href="{% url 'home:post' last_post.slug %}"
+                                                  class="text-light">
+                      {{last_post.title | title |truncatewords:15}}</a></h3>
+                    <p><small class="text-muted">{{last_post.publish_date |timesince}} Ago</small>
+                    </p>
+                  </div>
+                </a>
               </div>
-              <div class="card-body  text-light">
-                <ul class="list-group">
-
-                  {% for item in latestPosts %}
-                  <li class="tranding-item"><a href="{% url 'home:post' item.slug %}" class="tranding-link">{{item.title | title |truncatewords:10}}</a></li>
-                  {% endfor %}
-                </ul>
+            </div>
+            <div class="">
+              <div class="card  bg-light-dark  mb-3 w-100">
+                <div class="card-header">
+                  <h3 class="fst-italic text-light text-center tranding-title pt-2">Trending
+                    Stories</h3>
+                </div>
+                <div class="card-body  text-light">
+                  <ul class="list-group">
+                    {% for item in latestPosts %}
+                    <li class="tranding-item">
+                      <a href="{% url 'home:post' item.slug %}" class="tranding-link">{{item.title | title |truncatewords:10}}</a>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
-
+  </div>
 </section>
 
 <section class="py-5">
@@ -173,19 +121,20 @@ color:white;
       {% for item in startup_stories %}
       <div class="col-lg-4 col-md-5 col-sm-11 px-3">
         <div class="card">
-          <img src="{{item.imageURL}}" class="card-img-top" alt="..."
-            style="object-fit: cover !important; aspect-ratio: 16/ 10 !important;">
+          <img src="{{item.image_url}}" class="card-img-top" alt="..."
+               style="object-fit: cover !important; aspect-ratio: 16/ 10 !important;">
           <div class="card-body">
-            <small class="text-smaller fw-semibold"><a href="/tag/startup%20stories" class="smaller-text">STARTUP STORIES</a></small>
-            
-            <h3 class="card-title startup-story-subtitle"><a href="{% url 'home:post' item.slug %}" >{{item.title | truncatewords:8}}</a></h3>
+            <small class="text-smaller fw-semibold">
+              <a href="/tag/startup%20stories" class="smaller-text">STARTUP STORIES</a></small>
+            <h3 class="card-title startup-story-subtitle">
+              <a href="{% url 'home:post' item.slug %}">{{item.title|truncatewords:8}}</a>
+            </h3>
             <div class="startup-story-content">{{item.content | safe | truncatewords:10}}</div>
-            
           </div>
         </div>
       </div>
       {% endfor %}
-      <h3 class="startup-story-footer"><a href="/tag/startup%20stories">View More 	&#62;</a></h3>
+      <h3 class="startup-story-footer"><a href="/tag/startup%20stories">View More &#62;</a></h3>
     </div>
   </div>
 </section>

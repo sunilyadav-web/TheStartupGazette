@@ -25,16 +25,14 @@ class HomeView(TemplateView):
         for item in featured:
             split = item.link.split('/')
             slug = split[-1]
-            check = Post.objects.filter(slug=slug).exists()
-            if check:
-                object = Post.objects.get(slug=slug)
-                featured_post_list.append(object)
+            if Post.objects.filter(slug=slug).exists():
+                featured_post_list.append(Post.objects.get(slug=slug))
 
-        tag = Tag.objects.get(name='startup stories')
-        startup_stories = posts.filter(tag=tag)[:6]
+        startup_stories = posts.filter(tag=Tag.objects.get(name='startup stories'))[:6]
         ctx['startup_stories'] = startup_stories
         ctx['featured_post_list'] = featured_post_list
         ctx['sliders'] = Slider.objects.all()
+        ctx['active_nav'] = "home"
         return ctx
 
 
@@ -54,6 +52,7 @@ class CategoryFilterView(TemplateView):
         ctx = super().get_context_data(**kwargs)
         category_object = get_object_or_404(Category, name=kwargs.get('name', None))
         ctx['posts'] = Post.objects.filter(category=category_object, status=1)
+        ctx['category'] = category_object
         return ctx
 
 
@@ -78,16 +77,25 @@ class ContactView(SuccessMessageMixin, generic.CreateView):
     fields = '__all__'
     success_message = 'Thank you for getting in touch. will respond to you very soon!'
 
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['active_nav'] = "contact"
+        return ctx
+
 
 class AboutUsView(TemplateView):
     template_name = "home/about_us.html"
 
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['active_nav'] = "about_us"
+        return ctx
 
-# =============Search Functionality===============
+
 def search(request):
     context = {}
     try:
-        query = request.GET.get('q')
+        query = request.GET.get('q', None)
         if query:
             context['query'] = query
             checkquery = list(query)
@@ -96,7 +104,7 @@ def search(request):
                 messages.warning(request, 'Query length cannot be greater than 77 characters')
                 context['posts'] = Post.objects.none()
 
-            elif len(query) == checkquery.count(' '):
+            elif len(query) == checkquery.count():
                 messages.warning(request, 'Query cannot be empty!')
                 context['posts'] = Post.objects.none()
 

@@ -45,7 +45,7 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     @property
-    def imageURL(self):
+    def image_url(self):
         try:
             URL = self.image.url
         except:
@@ -75,7 +75,7 @@ class Slider(models.Model):
         return self.caption
 
     @property
-    def imageURL(self):
+    def image_url(self):
         try:
             url = self.image.url
         except:
@@ -93,9 +93,7 @@ class Featured(models.Model):
             split = self.link.split('/')
             slug = split[-1]
             obj = Post.objects.get(slug=slug)
-
-        except Exception as e:
-            print('Featured Model Exception : ', e)
+        except:
             obj = 'Enter a Valid Link-'
         return str(obj)
 
