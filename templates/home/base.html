@@ -69,25 +69,24 @@
             </div>
         </div>
     </div>
-
     {% block body %}
 
     {% endblock body %}
 </main>
 
 <footer id="footer" class="footer bg-dark ">
-
     <div class="footer-content">
         <div class="container">
             <div class="row g-5 py-3">
                 <div class="col-lg-3">
                     <h5 class="footer-heading ">About</h5>
                     <ul class="footer-links list-unstyled ">
-                        <li><a href="{% url 'home:about_us' %}" class="footer-link"></i> About us</a></li>
-                        <li><a href="{% url 'home:privacy_policy' %}" class="footer-link">Privacy Policy</a></li>
-                        <li><a href="{% url 'home:term_and_condition' %}" class="footer-link"> Terms and Condition</a>
+                        {% get_menu "FOOTER_LEFT_MENU" as footer_left_menu %}
+                        {% for item in footer_left_menu %}
+                        <li>
+                            <a href="{{item.url}}" class="footer-link">{{item.name}}</a>
                         </li>
-                        <li><a href="{% url 'home:contact' %}" class="footer-link"> Contact</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="col-6 col-lg-3">
@@ -102,7 +101,7 @@
                 </div>
                 <div class="col-6 col-lg-3">
                     <h5 class="footer-heading ">Submit</h5>
-                    <ul class="footer-links list-unstyled ">
+                    <ul class="footer-links list-unstyled">
                         <li><a href="#" class="footer-link">Submit News</a></li>
                         <li><a href="#" class="footer-link">Submit Your Startup Story</a></li>
                         <li><a href="#" class="footer-link">Submit Guest Post</a></li>
