@@ -97,9 +97,9 @@ class Featured(models.Model):
 class Contact(models.Model):
     name = models.CharField(max_length=50, verbose_name='Full Name')
     email = models.EmailField()
-    phone_no = models.IntegerField(verbose_name='Phone No')
+    phone_no = models.IntegerField(verbose_name='Phone No', null=True, blank=True)
     message = models.TextField(max_length=500)
-    created_at = models.DateTimeField(auto_now_add=True, editable=False, verbose_name='Featured At')
+    created_at = models.DateTimeField(auto_now_add=True, editable=False, verbose_name='Date')
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     def __str__(self):
