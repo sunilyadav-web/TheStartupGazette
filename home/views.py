@@ -1,6 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.http import HttpResponse
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, CreateView
 
 from home.models import *
 from django.contrib import messages
@@ -69,13 +69,14 @@ class TagFilterView(TemplateView):
         return ctx
 
 
-class ContactView(SuccessMessageMixin, generic.CreateView):
+class ContactView(SuccessMessageMixin, CreateView):
     template_name = 'home/contact.html'
     model = Contact
-    success_url = '/contact/'
     fields = '__all__'
-    success_message = 'Thank you for getting in touch. will respond to you very soon!'
+    success_message = 'Thank you for getting in touch, we will respond to you very soon!'
 
+    def get_success_url(self):
+        return reverse("home:contact")
 
 
 class AboutUsView(TemplateView):
