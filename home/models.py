@@ -1,5 +1,7 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+
+from .enum import StatusEnum
 from .utils import *
 from django.contrib.auth.models import User
 
@@ -23,12 +25,6 @@ class Tag(models.Model):
         return self.name
 
 
-STATUS = (
-    (0, "Draft"),
-    (1, "Publish")
-)
-
-
 class Post(models.Model):
     title = models.CharField(max_length=600, unique=True)
     image = models.ImageField(upload_to='post_images', null=True, default="../static/img/deafult.jpg")
@@ -37,7 +33,7 @@ class Post(models.Model):
     meta_description = models.TextField(blank=True, null=True)
     meta_keyword = models.TextField(blank=True, null=True)
     slug = models.SlugField(max_length=1000, unique=True, null=True, blank=True)
-    status = models.IntegerField(choices=STATUS, default=0)
+    status = models.CharField(choices=StatusEnum.choices, default=StatusEnum.DRAFT, max_length=10)
     publish_date = models.DateTimeField()
     writer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True, blank=True)
@@ -68,7 +64,7 @@ class Slider(models.Model):
     caption = models.CharField(max_length=70)
     link = models.CharField(max_length=300)
     image = models.ImageField(upload_to='slider_images', null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False, verbose_name="Created On")
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     def __str__(self):

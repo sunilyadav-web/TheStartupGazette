@@ -15,8 +15,8 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        posts = Post.objects.filter(status=1)
-        ctx['posts'] = Post.objects.filter(status=1).order_by('-publish_date')[:10]
+        posts = Post.objects.filter(status=StatusEnum.PUBLISH)
+        ctx['posts'] = Post.objects.filter(status=StatusEnum.PUBLISH).order_by('-publish_date')[:10]
         ctx['last_post'] = posts.latest('publish_date')
 
         featured_post_list = []
@@ -50,7 +50,7 @@ class CategoryFilterView(TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         category_object = get_object_or_404(Category, name=kwargs.get('name', None))
-        ctx['posts'] = Post.objects.filter(category=category_object, status=1)
+        ctx['posts'] = Post.objects.filter(category=category_object, status=StatusEnum.PUBLISH)
         ctx['category'] = category_object
         return ctx
 
@@ -64,7 +64,7 @@ class TagFilterView(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        ctx['posts'] = Post.objects.filter(tag=self.tag_object, status=1)
+        ctx['posts'] = Post.objects.filter(tag=self.tag_object, status=StatusEnum.PUBLISH)
         ctx['tag'] = self.tag_object
         return ctx
 
