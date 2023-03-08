@@ -111,7 +111,7 @@
                     <h5 class="footer-heading">Recent Articles</h5>
 
                     <ul class="footer-links footer-blog-entry list-unstyled">
-                        {% for item in latestPosts %}
+                        {% for item in latest_posts %}
                         <li>
                             <a href="{% url 'home:post' item.slug %}" class="footer-link">
                                 {{item.title | truncatewords:10}}
