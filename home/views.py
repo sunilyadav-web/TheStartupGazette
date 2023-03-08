@@ -6,8 +6,9 @@ from home.models import *
 from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator
-from django.views import generic
 from django.contrib.messages.views import SuccessMessageMixin
+
+from home.selector import get_featured_posts
 
 
 class HomeView(TemplateView):
@@ -15,22 +16,12 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        posts = Post.objects.filter(status=StatusEnum.PUBLISH)
-        ctx['posts'] = Post.objects.filter(status=StatusEnum.PUBLISH).order_by('-publish_date')[:10]
+        posts = Post.objects.filter(status=StatusEnum.PUBLISH).order_by('-publish_date')
+        ctx['posts'] = posts[:10]
         ctx['last_post'] = posts.latest('publish_date')
 
-        featured_post_list = []
-        featured = Featured.objects.order_by('-created_at')[:2]
-
-        for item in featured:
-            split = item.link.split('/')
-            slug = split[-1]
-            if Post.objects.filter(slug=slug).exists():
-                featured_post_list.append(Post.objects.get(slug=slug))
-
-        startup_stories = posts.filter(tag=Tag.objects.get(name='startup stories'))[:6]
-        ctx['startup_stories'] = startup_stories
-        ctx['featured_post_list'] = featured_post_list
+        ctx['startup_stories'] = posts.filter(tag=Tag.objects.get(name='startup stories'))[:6]
+        ctx['featured_posts'] = get_featured_posts()
         ctx['sliders'] = Slider.objects.all()
         return ctx
 
