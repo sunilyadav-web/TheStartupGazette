@@ -32,7 +32,10 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name="post")
     meta_description = models.TextField(blank=True, null=True)
     meta_keyword = models.TextField(blank=True, null=True)
-    slug = models.SlugField(max_length=1000, unique=True, null=True, blank=True)
+    slug = models.SlugField(
+        max_length=1000, unique=True, null=True, blank=True,
+        help_text="You don't need to add anything in this field."
+    )
     status = models.CharField(choices=StatusEnum.choices, default=StatusEnum.DRAFT, max_length=10)
     publish_date = models.DateTimeField()
     writer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
