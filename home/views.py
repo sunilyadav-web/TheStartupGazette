@@ -74,28 +74,20 @@ class AboutUsView(TemplateView):
     template_name = "home/about_us.html"
 
 
-
 def search(request):
     context = {}
     try:
         query = request.GET.get('q', None)
         if query:
             context['query'] = query
-            checkquery = list(query)
 
             if len(query) > 78:
                 messages.warning(request, 'Query length cannot be greater than 77 characters')
                 context['posts'] = Post.objects.none()
-
-            elif len(query) == checkquery.count():
-                messages.warning(request, 'Query cannot be empty!')
-                context['posts'] = Post.objects.none()
-
             else:
-
-                posts = Post.objects.filter(status=1)
-                queryset = posts.filter(
-                    Q(title__icontains=query) | Q(content__icontains=query)).order_by('-publish_date')
+                queryset = Post.objects.filter(
+                    Q(title__icontains=query) | Q(content__icontains=query), status=StatusEnum.PUBLISH
+                ).order_by('-publish_date')
 
                 paginator = Paginator(queryset, 2)
                 pager_number = request.GET.get('page')
@@ -105,13 +97,13 @@ def search(request):
                 context['page_range'] = page_range
                 context['querysetLength'] = queryset.count()
                 if queryset.count() < 1:
-                    messages.warning(request, 'Query not found ' + query)
+                    messages.warning(request, f"Query not found <strong>{query}</strong>")
         else:
-            messages.warning(request, 'Query cannot be empty. Please define something!')
+            messages.warning(request, 'Query cannot be empty please define something.')
             context['posts'] = Post.objects.none()
     except Exception as e:
         print('Search Exception : ', e)
-        messages.error(request, 'Something went wrong!')
+        messages.warning(request, 'Something went wrong!')
     return render(request, 'home/search.html', context)
 
 
