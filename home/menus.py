@@ -21,7 +21,7 @@ MENUS = {
             "url": "home:contact"
         },
     ],
-    'FOOTER_LEFT_MENU' : [
+    'FOOTER_LEFT_MENU': [
         {
             "name": "About Us",
             "url": "home:about_us",
