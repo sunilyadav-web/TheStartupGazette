@@ -152,7 +152,7 @@ border: var(--primary-color);
 
 }
 .footer-link{
-    color: #fbffffde!important;
+    color: #fff !important;
     font-family: var(--body-font);
     font-size: var(--small-font-size);
 }
