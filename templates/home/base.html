@@ -45,10 +45,10 @@
                     </li>
                     {% endfor %}
                 </ul>
-                <form class="d-flex" role="search" method="get" action="{% url 'home:search' %}">
+                <form class="d-flex text-dark search-box" role="search" method="get" action="{% url 'home:search' %}">
                     <input class="form-control me-2" type="search" placeholder="Search" name="q" aria-label="Search"
                            id="search">
-                    <button class="btn btn-outline-warning" type="submit">Search</button>
+                    <button class="btn btn-icon" type="submit"><i class='bx bx-search'></i></button>
                 </form>
             </div>
         </div>
