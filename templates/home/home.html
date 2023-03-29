@@ -71,16 +71,18 @@
         </div>
         <div class="col-md-4">
           <div class="position-sticky bg-dark rounded shadow-sm" style="top: 2rem;">
-            <div class="  ">
-
-              <div class="">
+            <div>
+              <div>
                 <a href="{% url 'home:post' last_post.slug %}">
                   <img src="{{last_post.image_url}}" class="card-img-top rounded-top" alt="...">
                   <div class="text-light p-3">
-                    <h3 class="tranding-title"><a href="{% url 'home:post' last_post.slug %}"
-                                                  class="text-light">
-                      {{last_post.title | title |truncatewords:15}}</a></h3>
-                    <p><small class="text-muted">{{last_post.publish_date |timesince}} Ago</small>
+                    <h3 class="trending-title">
+                      <a href="{% url 'home:post' last_post.slug %}" class="text-light">
+                        {{ last_post.title|title|truncatewords:15 }}
+                      </a>
+                    </h3>
+                    <p>
+                      <small class="text-muted">{{last_post.publish_date |timesince}} Ago</small>
                     </p>
                   </div>
                 </a>
@@ -95,8 +97,10 @@
                 <div class="card-body  text-light">
                   <ul class="list-group">
                     {% for item in latest_posts %}
-                    <li class="tranding-item">
-                      <a href="{% url 'home:post' item.slug %}" class="tranding-link">{{item.title | title |truncatewords:10}}</a>
+                    <li class="trending-item">
+                      <a href="{% url 'home:post' item.slug %}" class="trending-link">
+                        {{item.title | title |truncatewords:10 }}
+                      </a>
                     </li>
                     {% endfor %}
                   </ul>
