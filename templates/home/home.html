@@ -13,7 +13,9 @@
                   <img src="{{item.image_url}}" class="d-block w-100 rounded c-img" alt="...">
                   <div class="carousel-caption ">
                       <h3 class="slider-text">
-                        <a class="text-white text-decoration-underline" href="{{item.link}}" target="_blank">{{item.caption|title}}</a>
+                        <a class="text-white text-decoration-underline" href="{{item.link}}" target="_blank">
+                         <h2>{{item.caption|title}}</h2>
+                        </a>
                       </h3>
                   </div>
               </div>
@@ -89,10 +91,11 @@
               </div>
             </div>
             <div class="">
-              <div class="card  bg-light-dark  mb-3 w-100">
-                <div class="card-header">
-                  <h3 class="fst-italic text-light text-center tranding-title pt-2">Trending
-                    Stories</h3>
+              <div class="card border-dark bg-light-dark  mb-3 w-100">
+                <div class="card-header border-dark">
+                  <h3 class="fst-italic text-light trending-title pt-2">
+                    Trending Stories
+                  </h3>
                 </div>
                 <div class="card-body  text-light">
                   <ul class="list-group">
