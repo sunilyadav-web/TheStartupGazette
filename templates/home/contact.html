@@ -15,7 +15,7 @@
             </div>
             <div class="w-100"></div>
             <div class="col-md-6 m-auto">
-                <h4 class="text-center">Feel free to contact</h4>
+                <h1 class="text-center py-2">Feel free to contact</h1>
                 <form method="post" action="{% url 'home:contact' %}">
                     {% csrf_token %}
                     {{ form | crispy }}
