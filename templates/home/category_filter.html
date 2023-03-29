@@ -3,37 +3,53 @@
 
 {% block body %}
 <section class="py-5">
-<div class="container">
+  <div class="container">
     <div class="row">
       <div class="col-md-10 m-auto">
         <p class="text-muted"><small>Home > Category > {{category}}</small></p>
       </div>
-        {% for item in posts  %}
-          
-        <div class="col-md-10 m-auto mb-3">
-            <div class="card mb-3 shadow-sm" >
-                <div class="row g-0">
-                  <div class="col-md-4">
-                    <img src="{{item.image_url}}" class="img-fluid rounded-start" alt="...">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body ">
-                      <h2 class="card-title category-title"><a href="{% url 'home:post' item.slug %}">{{item.title}}</a></h2>
-                      <div class="card-text">
-                        <div class="category-content">
-                        <a href="{% url 'home:post' item.slug %}">
-                          {{item.content | safe |truncatewords:20}}
-                        </a>
-                        </div>
-                        </div>
-                      <div class="mb-0"><small class="text-muted">Published:  {{item.publish_date | date:'d M Y'}}</small></div>
-                    </div>
+      {% if posts %}
+      {% for item in posts %}
+      <div class="col-md-10 m-auto mb-3">
+        <div class="card mb-3 shadow-sm">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="{{item.image_url}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body ">
+                <h2 class="card-title category-title"><a href="{% url 'home:post' item.slug %}">{{item.title}}</a></h2>
+                <div class="card-text">
+                  <div class="category-content">
+                    <a href="{% url 'home:post' item.slug %}">
+                      {{item.content | safe |truncatewords:20}}
+                    </a>
                   </div>
                 </div>
+                <div class="mb-0"><small class="text-muted">Published: {{item.publish_date | date:'d M Y'}}</small>
+                </div>
               </div>
+            </div>
+          </div>
         </div>
-        {% endfor %}
+      </div>
+      {% endfor %}
+      {% elif not posts  %}
+      <div class="col-12">
+        <div class="card border-0">
+          <div class="empty">
+            <div class="empty-img">
+              <img src="{% static 'img/no_search_result.svg' %}" height="128" alt="">
+            </div>
+            <h1 class="empty-title">No post found</h1>
+            <p class="empty-subtitle text-muted">
+              Try adjusting your search category to find what you're looking for.
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
     </div>
-</div>
+  </div>
 </section>
 {% endblock body %}
