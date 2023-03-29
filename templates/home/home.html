@@ -13,7 +13,9 @@
                   <img src="{{item.image_url}}" class="d-block w-100 rounded c-img" alt="...">
                   <div class="carousel-caption ">
                       <h3 class="slider-text">
-                        <a class="text-white text-decoration-underline" href="{{item.link}}" target="_blank">{{item.caption|title}}</a>
+                        <a class="text-white text-decoration-underline" href="{{item.link}}" target="_blank">
+                         <h2>{{item.caption|title}}</h2>
+                        </a>
                       </h3>
                   </div>
               </div>
@@ -71,32 +73,37 @@
         </div>
         <div class="col-md-4">
           <div class="position-sticky bg-dark rounded shadow-sm" style="top: 2rem;">
-            <div class="  ">
-
-              <div class="">
+            <div>
+              <div>
                 <a href="{% url 'home:post' last_post.slug %}">
                   <img src="{{last_post.image_url}}" class="card-img-top rounded-top" alt="...">
                   <div class="text-light p-3">
-                    <h3 class="tranding-title"><a href="{% url 'home:post' last_post.slug %}"
-                                                  class="text-light">
-                      {{last_post.title | title |truncatewords:15}}</a></h3>
-                    <p><small class="text-muted">{{last_post.publish_date |timesince}} Ago</small>
+                    <h3 class="trending-title">
+                      <a href="{% url 'home:post' last_post.slug %}" class="text-light">
+                        {{ last_post.title|title|truncatewords:15 }}
+                      </a>
+                    </h3>
+                    <p>
+                      <small class="text-muted">{{last_post.publish_date |timesince}} Ago</small>
                     </p>
                   </div>
                 </a>
               </div>
             </div>
             <div class="">
-              <div class="card  bg-light-dark  mb-3 w-100">
-                <div class="card-header">
-                  <h3 class="fst-italic text-light text-center tranding-title pt-2">Trending
-                    Stories</h3>
+              <div class="card border-dark bg-light-dark  mb-3 w-100">
+                <div class="card-header border-dark">
+                  <h3 class="fst-italic text-light trending-title pt-2">
+                    Trending Stories
+                  </h3>
                 </div>
                 <div class="card-body  text-light">
                   <ul class="list-group">
                     {% for item in latest_posts %}
-                    <li class="tranding-item">
-                      <a href="{% url 'home:post' item.slug %}" class="tranding-link">{{item.title | title |truncatewords:10}}</a>
+                    <li class="trending-item">
+                      <a href="{% url 'home:post' item.slug %}" class="trending-link">
+                        {{item.title | title |truncatewords:10 }}
+                      </a>
                     </li>
                     {% endfor %}
                   </ul>
