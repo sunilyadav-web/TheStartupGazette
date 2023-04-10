@@ -185,7 +185,7 @@ border: var(--primary-color);
 
 /* Featured */
 .featured-title{
-    font-size: var(--h2-font-size);
+    font-size: var(--h1-font-size);
     font-family: var(--body-font);
 }
 
