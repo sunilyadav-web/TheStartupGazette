@@ -89,7 +89,7 @@ def search(request):
                     Q(title__icontains=query) | Q(content__icontains=query), status=StatusEnum.PUBLISH
                 ).order_by('-publish_date')
 
-                paginator = Paginator(queryset, 2)
+                paginator = Paginator(queryset, 5)
                 pager_number = request.GET.get('page')
                 page = paginator.get_page(pager_number)
                 page_range = paginator.page_range
