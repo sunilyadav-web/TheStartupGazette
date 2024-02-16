@@ -26,20 +26,20 @@
     <!-- ================CSS STYLE BLOCK=========== -->
     <style>{% block css %}{% endblock css %}</style>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D5C7JW691K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D5C7JW691K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-D5C7JW691K');
-</script>
+      gtag('config', 'G-D5C7JW691K');
+    </script>
 </head>
 <body>
 <header id="header" class="">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow py-2">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/static">TSG</a>
+            <a class="navbar-brand fw-bold" href="/">TSG</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#theStartupNav"
                     aria-controls="theStartupNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -157,10 +157,10 @@
 
 
 <!-- ===================TABLER JS=================== -->
-<script src="{% static 'Js/tabler.min.js' %}"></script>
+<script src="{% static 'js/tabler.min.js' %}"></script>
 
 <!-- ================CUSTOM TEMPLATE MAIN JS============= -->
-<script src="{% static 'Js/main.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>
